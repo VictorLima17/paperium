@@ -28,11 +28,11 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
-
+    protected $redirectTo = '/admin';
+    protected $redirectPath = '/admin';
     protected $guard = 'admin';
-    protected $loginView = 'adminAuth.login';
-    protected $registerView = 'adminAuth.register';
+    protected $loginView = 'admin.auth.login';
+    protected $registerView = 'admin.auth.register';
 
 
     /**
@@ -56,7 +56,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:admins',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:4|confirmed',
         ]);
     }
 
@@ -69,7 +69,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return Admin::create([
-            'name' => $data['name'],
+            'nome' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

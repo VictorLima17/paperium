@@ -20,9 +20,9 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
-    protected $redirectTo = '/admin/home';
-    protected $linkRequestView = 'adminAuth.passwords.email';
-    protected $resetView = 'adminAuth.passwords.reset';
+    protected $redirectTo = '/admin';
+    protected $linkRequestView = 'admin.auth.passwords.email';
+    protected $resetView = 'admin.auth.passwords.reset';
     protected $guard = 'admin';
     protected $broker = 'admins';
 

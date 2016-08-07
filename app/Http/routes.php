@@ -14,23 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index');
 
+
+
+
+/* rotas admin */
 Route::auth();
-
-// Authentication Routes...
+//Rotas de autenticação
 $this->get('admin/login', 'AdminAuth\AuthController@showLoginForm');
 $this->post('admin/login', 'AdminAuth\AuthController@login');
 $this->get('admin/logout', 'AdminAuth\AuthController@logout');
-
-// Registration Routes...
+// Cadastro()
 $this->get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
 $this->post('admin/register', 'AdminAuth\AuthController@register');
-
-// Password Reset Routes...
+//Redefinição de senha
 $this->get('admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
 $this->post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
 $this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
-Route::get('/home', 'HomeController@index');
-
-Route::get('admin/home', 'AdminHomeController@index');
+Route::get('/admin', 'AdminHomeController@index');

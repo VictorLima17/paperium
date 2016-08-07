@@ -20,6 +20,9 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
+    protected $linkRequestView = 'leitor.auth.passwords.email';
+    protected $resetView = 'leitor.auth.passwords.reset';
+    
     /**
      * Create a new password controller instance.
      *
