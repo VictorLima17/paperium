@@ -34,3 +34,6 @@ $this->post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkE
 $this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::get('/admin', 'AdminHomeController@index');
+Route::get('materialize',function(){
+    return view('materialize');
+});
