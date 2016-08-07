@@ -1,5 +1,4 @@
-# Laravel5.2 Introduction of Multi-Authentication
+# Projeto Paperium 
 
-See more information
-[How to make the multi-Authentication in laravel 5.2](http://dog-ears.net/en/laravel/160523/).
-
+Repositórios usados:
+dog-ears Multi Auth https://github.com/dog-ears/laravel-multi-auth
