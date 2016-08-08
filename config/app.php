@@ -159,6 +159,10 @@ return [
         
         Collective\Html\HtmlServiceProvider::class,
 
+        Skydiver\LaravelMaterializeCSS\MaterializeCSSServiceProvider::class,
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*
