@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('leitor.index');
 });
 Route::get('/home', 'HomeController@index');
 
@@ -33,7 +33,15 @@ $this->get('admin/password/reset/{token?}', 'AdminAuth\PasswordController@showRe
 $this->post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
 $this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
-Route::get('/admin', 'AdminHomeController@index');
-Route::get('materialize',function(){
-    return view('materialize');
+Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
+    Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
+    Route::get('/teste',[ 'as' => 'teste', 'uses' => 'AdminController@teste']);
+    Route::get('/livros',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+    Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);
+    Route::get('/autor/{id}',[ 'as' => 'mostra.autor', 'uses' => 'AdminController@mostraAutor']);
+    Route::get('/autor/edita/{id}',[ 'as' => 'mostra.edita.autor', 'uses' => 'AdminController@mostraAutor']);
+    Route::put('/autor/{id}',[ 'as' => 'atualiza.autor', 'uses' => 'AutorController@atualizaAutor']);
+    Route::get('/autor/deleta/{id}',[ 'as' => 'mostra.deleta.autor', 'uses' => 'AdminController@mostraAutor']);
+    Route::delete('/autor/{id}',[ 'as' => 'deleta.autor', 'uses' => 'AutorController@deletaAutor']);
 });
+

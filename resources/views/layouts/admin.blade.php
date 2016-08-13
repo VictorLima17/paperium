@@ -2,9 +2,9 @@
 <html>
 <head>
 
-    <title> @yield('titulo') </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    {!! MaterializeCSS::include_css() !!}
+    <title> @yield('titulo') </title>
 
     @yield('css') <!-- Aqui vem os css especificos de cada pagina-->
 
@@ -17,9 +17,9 @@
 
     @include('admin.partes.footer') <!-- Aqui vem o rodapé da pagina -->
 
-    {!! MaterializeCSS::include_js() !!}
-
     @yield('js') <!-- Aqui vem os js especificos de cada pagina -->
+
+    @include('admin.partes.mensagens') <!-- Incluo as mensagens de erro para todas paginas-->
 
 </body>
 </html>

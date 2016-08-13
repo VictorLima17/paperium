@@ -12,5 +12,6 @@ class Autor extends Model
     {
         return $this->belongsToMany(LivroDigital::class,'autor_livro','autor_id','livro_id');
     }
+
     
 }

@@ -15,7 +15,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function listaLeitura()
+    public function livrosDigitais()
     {
         return $this->belongsToMany(LivroDigital::class,'lista_leitura','user_id','livro_id');
     }

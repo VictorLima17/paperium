@@ -18,7 +18,7 @@ class LivroDigital extends Model
         return $this->belongsToMany(Autor::class,'autor_livro','livro_id','autor_id');
     }
 
-    public function listaLeitura()
+    public function users()
     {
         return $this->belongsToMany(User::class,'lista_leitura','livro_id','user_id');
     }

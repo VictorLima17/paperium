@@ -8,7 +8,6 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "skydiver/laravel-materialize-css": "dev-master",
         "barryvdh/laravel-ide-helper": "^2.2"
     },
     "require-dev": {
@@ -44,8 +43,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize",
-            "php artisan vendor:publish --tag=materializecss --force"
+            "php artisan optimize"
         ]
     },
     "config": {
