@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function livrosIndex()
     {
-        $autores = Autor::all();
+        $autores = Autor::all(); // substitui isso por all qnd tiver muitos query()->paginate(25);
         return view('admin.livros-digitais')->with(['autores' => $autores]);
     }
 

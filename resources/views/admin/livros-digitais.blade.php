@@ -30,6 +30,7 @@
             @endforeach
         </tbody>
     </table>
+    <!-- $autores->links() qnd for fzr a paginaçao -->
 
 @endsection
 
