@@ -31,6 +31,6 @@
         </tbody>
     </table>
     <!-- $autores->links() qnd for fzr a paginaçao -->
-
+    {{Jenssegers\Date\Date::now()->format('l j F Y H:i:s')}}
 @endsection
 
