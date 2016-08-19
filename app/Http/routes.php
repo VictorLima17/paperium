@@ -37,11 +37,23 @@ Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
     Route::get('/teste',[ 'as' => 'teste', 'uses' => 'AdminController@teste']);
     Route::get('/livros',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+    
+    //Autor
     Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);
     Route::get('/autor/{id}',[ 'as' => 'mostra.autor', 'uses' => 'AdminController@mostraAutor']);
     Route::get('/autor/edita/{id}',[ 'as' => 'mostra.edita.autor', 'uses' => 'AdminController@mostraAutor']);
     Route::put('/autor/{id}',[ 'as' => 'atualiza.autor', 'uses' => 'AutorController@atualizaAutor']);
     Route::get('/autor/deleta/{id}',[ 'as' => 'mostra.deleta.autor', 'uses' => 'AdminController@mostraAutor']);
     Route::delete('/autor/{id}',[ 'as' => 'deleta.autor', 'uses' => 'AutorController@deletaAutor']);
+
+    //Genero
+    Route::get('/cadastra/genero',[ 'as' => 'cadastra.genero', 'uses' => 'AdminController@formCadastraGenero']);
+    Route::post('/cadastra/genero',[ 'as' => 'cadastra.genero', 'uses' => 'GeneroController@cadastraGenero']);
+    Route::get('/genero/{id}',[ 'as' => 'mostra.genero', 'uses' => 'AdminController@mostraGenero']);
+    Route::get('/genero/edita/{id}',[ 'as' => 'mostra.edita.genero', 'uses' => 'AdminController@formEditaGenero']);
+    Route::put('/genero/{id}',[ 'as' => 'atualiza.genero', 'uses' => 'GeneroController@atualizaGenero']);
+    Route::get('/genero/deleta/{id}',[ 'as' => 'mostra.deleta.genero', 'uses' => 'AdminController@mostraGenero']);
+    Route::delete('/genero/{id}',[ 'as' => 'deleta.genero', 'uses' => 'GeneroController@deletaGenero']);
+
 });
 

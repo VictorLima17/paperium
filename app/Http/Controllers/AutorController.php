@@ -57,7 +57,6 @@ class AutorController extends Controller
             return redirect()->route('admin::livros.index');
         }else{
             return redirect()->back();
-
         }
 
     }

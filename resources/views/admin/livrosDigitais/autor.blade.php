@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('titulo')
+    Autor | {{$autor->autor}}
+@endsection
+
 @section('conteudo')
     @if(Route::is('admin::mostra.autor'))
 
@@ -23,8 +27,8 @@
         </form>
     @endif
 
-    <b>Criado em:</b>{{$autor->created_at}}<br>
-    <b>Atualizado pela última vez em:</b>{{$autor->updated_at}}<br>
+    <b>Criado em:</b>{{$autor->criado_em}}<br>
+    <b>Atualizado pela última vez em:</b>{{$autor->atualizado_em}}<br>
 
 @endsection
 
