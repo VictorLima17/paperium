@@ -56,5 +56,28 @@
         </tbody>
     </table>
 
+    <br><br>
+    <b>Livro:</b>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Genero</th>
+            <th>Autores</th>
+        </thead>
+        <tbody>
+            @foreach($livros as $livro)
+                <tr>
+                    <td>{{$livro->id}}</td>
+                    <td>{{$livro->nome}}</td>
+                    <td>{{$livro->genero->genero}}</td>
+                    @foreach($livro->autores as $autor)
+                        <td>{{$autor->autor}}</td>
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
 @endsection
 

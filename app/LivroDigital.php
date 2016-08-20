@@ -10,17 +10,17 @@ class LivroDigital extends Model
 
     public function genero()
     {
-        return $this->belongsTo(Genero::class);
+        return $this->belongsTo('App\Genero');
     }
 
     public function autores()
     {
-        return $this->belongsToMany(Autor::class,'autor_livro','livro_id','autor_id');
+        return $this->belongsToMany('App\Autor','autor_livro','livro_id','autor_id');
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'lista_leitura','livro_id','user_id');
+        return $this->belongsToMany('App\User','lista_leitura','livro_id','user_id');
     }
     
 }

@@ -10,7 +10,7 @@ class Autor extends Model
 
     public function livrosDigitais()
     {
-        return $this->belongsToMany(LivroDigital::class,'autor_livro','autor_id','livro_id');
+        return $this->belongsToMany('App\LivroDigital','autor_livro','autor_id','livro_id');
     }
 
     

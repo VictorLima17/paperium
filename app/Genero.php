@@ -8,6 +8,6 @@ class Genero extends Model
 {
     public function livrosDigitais()
     {
-        return $this->hasMany(LivroDigital::class);
+        return $this->hasMany('App\LivroDigital');
     }
 }

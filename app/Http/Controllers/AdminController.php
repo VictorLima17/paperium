@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Autor;
 use App\Genero;
 use App\Http\Requests;
+use App\LivroDigital;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 
@@ -29,7 +30,8 @@ class AdminController extends Controller
     {
         $autores = Autor::all(); // substitui isso por all qnd tiver muitos query()->paginate(25);
         $generos = Genero::all();
-        return view('admin.livros-digitais')->with(['autores' => $autores ,'generos' => $generos]);
+        $livros = LivroDigital::all();
+        return view('admin.livros-digitais')->with(['autores' => $autores ,'generos' => $generos ,'livros' => $livros]);
     }
 
     public function mostraAutor($id)

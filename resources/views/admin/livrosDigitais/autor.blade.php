@@ -29,7 +29,12 @@
 
     <b>Criado em:</b>{{$autor->criado_em}}<br>
     <b>Atualizado pela última vez em:</b>{{$autor->atualizado_em}}<br>
-
+    <b>Livros cadastrados com o autor:</b><br>
+    @forelse($autor->livrosDigitais as $livro)
+        {{$livro->nome}}<br>
+    @empty
+        <p>Sem livros</p>
+    @endforelse
 @endsection
 
 
