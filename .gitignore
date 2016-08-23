@@ -6,3 +6,6 @@ Homestead.json
 .env
 /.idea
 /nbproject
+/public/img/genero
+/public/img/livro
+/public/pdf
