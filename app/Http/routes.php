@@ -56,6 +56,13 @@ Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::delete('/genero/{id}',[ 'as' => 'deleta.genero', 'uses' => 'GeneroController@deletaGenero']);
     
     //Livro
+    Route::get('/cadastra/livro',[ 'as' => 'cadastra.livro', 'uses' => 'AdminController@formCadastraLivro']);
+    Route::post('/cadastra/livro',[ 'as' => 'cadastra.livro', 'uses' => 'LivroDigitalController@cadastraLivro']);
+    Route::get('/livro/{id}',[ 'as' => 'mostra.livro', 'uses' => 'AdminController@mostraLivro']);
+    Route::get('/livro/edita/{id}',[ 'as' => 'mostra.edita.livro', 'uses' => 'AdminController@formEditaLivro']);
+    Route::put('/livro/{id}',[ 'as' => 'atualiza.livro', 'uses' => 'LivroDigitalController@atualizaLivro']);
+    Route::get('/livro/deleta/{id}',[ 'as' => 'mostra.deleta.livro', 'uses' => 'AdminController@mostraLivro']);
+    Route::delete('/livro/{id}',[ 'as' => 'deleta.livro', 'uses' => 'LivroDigitalController@deletaLivro']);
     
 });
 

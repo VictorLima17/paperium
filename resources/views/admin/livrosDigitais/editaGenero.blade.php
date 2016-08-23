@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('titulo')
-   Gênero | Editar
+   Gênero | Editar {{$genero->genero}}
 @endsection
 
 @section('conteudo')

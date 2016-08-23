@@ -57,23 +57,22 @@
     </table>
 
     <br><br>
-    <b>Livro:</b>
+    <b>Livro:</b><br>
+    <a href="{{route('admin::cadastra.livro')}}">Cadastrar novo</a>
     <table>
         <thead>
             <th>Id</th>
             <th>Nome</th>
-            <th>Genero</th>
-            <th>Autores</th>
+            <th>Links</th>
         </thead>
         <tbody>
             @foreach($livros as $livro)
                 <tr>
                     <td>{{$livro->id}}</td>
                     <td>{{$livro->nome}}</td>
-                    <td>{{$livro->genero->genero}}</td>
-                    @foreach($livro->autores as $autor)
-                        <td>{{$autor->autor}}</td>
-                    @endforeach
+                    <td><a href="{{route('admin::mostra.livro',$livro->id)}}">Mostrar</a></td>
+                    <td><a href="{{route('admin::mostra.edita.livro',$livro->id)}}">Editar</a></td>
+                    <td><a href="{{route('admin::mostra.deleta.livro',$livro->id)}}">Deletar</a></td>
                 </tr>
             @endforeach
         </tbody>

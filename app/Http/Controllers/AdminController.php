@@ -61,4 +61,28 @@ class AdminController extends Controller
         return view('admin.livrosDigitais.editaGenero')->with(['genero' => $genero]);
     }
 
+    public function formCadastraLivro()
+    {
+        $autores = Autor::all();
+        $generos = Genero::all();
+        return view('admin.livrosDigitais.cadastraLivro')->with(['generos' => $generos, 'autores' => $autores]);
+    }
+
+    public function mostraLivro($id)
+    {
+        $livro = LivroDigital::query()->findOrFail($id);
+        $livro->criado_em = Date::parse($livro->created_at)->format('j F Y H:i:s');
+        $livro->atualizado_em = Date::parse($livro->updated_at)->format('j F Y H:i:s');
+        return view('admin.livrosDigitais.livro')->with(['livro' => $livro]);
+    }
+
+    public function formEditaLivro($id)
+    {
+        $livro = LivroDigital::query()->findOrFail($id);
+        $autores = Autor::all();
+        $generos = Genero::all();
+        $autorLivro = $livro->autores()->lists('id'); //pego os autores do livro para inserir no select
+        return view('admin.livrosDigitais.editaLivro')->with(['livro' => $livro,'generos' => $generos, 'autores' => $autores, 'autorLivro' => $autorLivro]);
+    }
+
 }

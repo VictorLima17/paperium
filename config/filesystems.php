@@ -53,6 +53,16 @@ return [
             'root' => public_path('img/genero/'),
         ],
 
+        'imgLivro' => [
+            'driver' => 'local',
+            'root' => public_path('img/livro/'),
+        ],
+
+        'pdfLivro' => [
+            'driver' => 'local',
+            'root' => public_path('pdf/'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

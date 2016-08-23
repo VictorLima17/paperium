@@ -44,12 +44,18 @@ class GeneroController extends Controller
 
     public function atualizaGenero($id, Request $request)
     {
-        $this->validate($request,[
-            'genero' => 'required|alpha_spaces|max:65|unique:generos,genero',
-            'img' => 'sometimes|mimes:jpeg,jpg,png|max:1750'
-        ]);
-
         $genero = Genero::query()->findOrFail($id);
+
+        if($request->input(['genero']) == $genero->genero){ //verifico se o nome do genero não mudou
+            $this->validate($request,[
+                'img' => 'sometimes|mimes:jpeg,jpg,png|max:1750'
+            ]);
+        }else{
+            $this->validate($request,[
+                'genero' => 'required|alpha_spaces|max:65|unique:generos,genero',
+                'img' => 'sometimes|mimes:jpeg,jpg,png|max:1750'
+            ]);
+        }
 
         $genero->genero = $request->input(['genero']);
 

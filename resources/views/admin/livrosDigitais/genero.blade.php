@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('titulo')
+
     @if(Route::is('admin::mostra.genero'))
         Genero | {{$genero->genero}}
     @elseif(Route::is('admin::mostra.deleta.genero'))
@@ -20,6 +21,7 @@
             <a href="{{route('admin::livros.index')}}">Cancelar</a>
         </form>
     @endif
+
     <b>Nome do gênero:</b>{{$genero->genero}}<br>
     <b>Criado em:</b>{{$genero->criado_em}}<br>
     <b>Atualizado pela última vez em:</b>{{$genero->atualizado_em}}<br>

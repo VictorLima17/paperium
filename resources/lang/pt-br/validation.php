@@ -20,6 +20,7 @@ return [
     'alpha_dash'           => 'O campo :attribute deve conter apenas letras, números e traços.',
     'alpha_num'            => 'O campo :attribute deve conter apenas letras e números .',
     'alpha_spaces'            => 'O campo :attribute deve conter apenas letras e espaços .',
+    'alpha_num_spaces'            => 'O campo :attribute deve conter apenas letras,números e espaços .',
     'array'                => 'O campo :attribute deve conter um array.',
     'before'               => 'O campo :attribute deve conter uma data anterior a :date.',
     'between'              => [
