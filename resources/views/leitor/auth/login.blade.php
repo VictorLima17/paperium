@@ -6,5 +6,6 @@
 </form>
 
 <a href="{{url('login/facebook')}}">Login com Facebook</a>
+<a href="{{url('login/google')}}">Login com Google</a>
 
 @include('leitor.partes.mensagens')

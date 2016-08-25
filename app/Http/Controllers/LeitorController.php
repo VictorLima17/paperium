@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\LivroDigital;
 use Illuminate\Http\Request;
 
 class LeitorController extends Controller
@@ -10,6 +11,12 @@ class LeitorController extends Controller
 
     public function index()
     {
-        return view('leitor.index');
+        $livros = LivroDigital::all();
+        return view('leitor.index')->with(['livros' => $livros]);
+    }
+
+    public function mostraPerfil()
+    {
+        return view('leitor.perfil');
     }
 }
