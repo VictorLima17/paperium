@@ -17,6 +17,8 @@
 
     @yield('js') <!-- Aqui vem os js especificos de cada pagina -->
 
+    @include('leitor.partes.mensagens') <!-- Incluo as mensagens de erro para todas paginas-->
+
 </body>
 </html>
 

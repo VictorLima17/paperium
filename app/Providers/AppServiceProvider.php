@@ -19,11 +19,12 @@ class AppServiceProvider extends ServiceProvider
         {
             return preg_match('/^[\pL\s]+$/u', $value);
         }); //crio a verficação de somente letras e espaços
+
         Validator::extend('alpha_num_spaces', function ($attribute, $value)
         {
             return preg_match('/(^[A-Za-z0-9 ]+$)+/', $value);
         }); //crio a verficação de somente letras,numeros e espaços
-
+ 
         Carbon::setLocale('pt_BR'); //localização da diferença de datas da biblioteca carbon
         
     }

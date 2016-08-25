@@ -1,10 +1,12 @@
 @extends('layouts.leitor')
 
 @section('titulo')
-    index
+   Paperium | Home
 @endsection
 
-@include('leitor.partes.carrosel')
+@section('conteudo')
+
+@endsection
 
 
 

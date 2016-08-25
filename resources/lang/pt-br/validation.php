@@ -73,6 +73,7 @@ return [
     'required_without'     => 'O campo :attribute é obrigatório quando :values não está presente.',
     'required_without_all' => 'O campo :attribute é obrigatório quando nenhum dos :values está presente.',
     'same'                 => 'Os campos :attribute e :other devem conter valores iguais.',
+    'senha'                => 'A senha deve incluir apenas letras e números',
     'size'                 => [
         'numeric' => 'O campo :attribute deve conter o número :size.',
         'file'    => 'O campo :attribute deve conter um arquivo com o tamanho de :size kilobytes.',

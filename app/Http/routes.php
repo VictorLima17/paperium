@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('leitor.index');
+Route::auth();
+Route::get('/', 'LeitorController@index');
+Route::get('/perfil',function(){
+    return view('leitor.perfil');
 });
-Route::get('/home', 'HomeController@index');
-
-
-
+//Rotas de autenticação de redes socias
+Route::get('login/facebook', 'Auth\SocialController@redirectToProvider');
+Route::get('login/callback/facebook', 'Auth\SocialController@handleProviderCallback');
 
 /* rotas admin */
-Route::auth();
 //Rotas de autenticação
 $this->get('admin/login', 'AdminAuth\AuthController@showLoginForm');
 $this->post('admin/login', 'AdminAuth\AuthController@login');
