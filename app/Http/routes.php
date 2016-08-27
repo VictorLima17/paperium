@@ -14,6 +14,11 @@
 Route::auth();
 Route::get('/', 'LeitorController@index');
 Route::get('/perfil','LeitorController@mostraPerfil');
+
+//Rotas de ajax da lista de livros digitais do usuario
+Route::post('/adicionar/leitura','LivroDigitalController@adicionarLivroLeitura');
+Route::post('/remover/leitura','LivroDigitalController@removerLivroLeitura');
+
 //Rotas de autenticação de redes socias
 Route::get('login/{provedor}', 'Auth\SocialController@redirectToProvider');
 Route::get('login/callback/{provedor}', 'Auth\SocialController@handleProviderCallback');

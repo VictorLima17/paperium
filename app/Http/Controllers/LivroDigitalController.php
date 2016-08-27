@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Storage;
 use Image;
 use Session;
+use Auth;
 
 class LivroDigitalController extends Controller
 {
@@ -138,5 +139,33 @@ class LivroDigitalController extends Controller
         }
 
     }
+
+    public function adicionarLivroLeitura(Request $request)
+    {
+        if($request->ajax()){
+           $this->validate($request,[
+               'livroId' => 'required|integer|exists:livros_digitais,id'
+           ]);
+
+           $leitor = Auth::user();
+           if($leitor->livrosDigitais()->sync($request->all(),false)){
+                return ['status' => 'sucesso','mensagem' => 'Livro adicionado a lista com sucesso'];
+           }
+        }
+    }
     
+    public function removerLivroLeitura(Request $request)
+    {
+        if($request->ajax()){
+           $this->validate($request,[
+               'livroId' => 'required|integer|exists:livros_digitais,id'
+           ]);
+
+           $leitor = Auth::user();
+           if($leitor->livrosDigitais()->detach($request->all())){
+                return ['status' => 'sucesso','mensagem' => 'Livro retirado da sua lista com sucesso'];
+           }
+        }
+    }
+
 }
