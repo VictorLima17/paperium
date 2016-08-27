@@ -9,7 +9,8 @@
         <thead>
             <th>Nome do livro</th>
             <th>Capa Livro</th>
-            <th>Ações</th>
+            <th>Lista</th>
+            <th>Download</th>
         </thead>
         <tbody>
             @foreach($livros as $livro)
@@ -23,6 +24,7 @@
                             <a href="#" class="lista-adicionar" id="{{$livro->id}}">Adicionar a lista</a>
                         @endif
                     </td>
+                    <td><a href="/download/{{$livro->id}}">Download</a></td>
                 </tr>
             @endforeach
         </tbody>
