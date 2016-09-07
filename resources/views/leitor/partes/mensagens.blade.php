@@ -1,11 +1,21 @@
 @if(count($errors) > 0)
-    <ul>
         @foreach ($errors->all() as $erro)
-            <li>{{ $erro}}</li>
+           <script type="text/javascript">
+	           $.notify({
+		           message: '{{$erro}}'
+	           },{
+		           type: 'danger'
+	           });
+           </script>
         @endforeach
-    </ul>
 @endif
 
 @if(Session::has('sucesso'))
-    <b>{{Session::get('sucesso')}}</b>
+	<script type="text/javascript">
+		$.notify({
+			message: '{{Session::get('sucesso')}}'
+		},{
+			type: 'success'
+		});
+	</script>
 @endif

@@ -1,21 +1,22 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+//Rotas de autenticação
+Route::get('/login', 'Auth\AuthController@showLoginForm');
+Route::post('/login', 'Auth\AuthController@login');
+Route::get('/login/{provedor}', 'Auth\SocialController@redirectToProvider');
+Route::get('/login/callback/{provedor}', 'Auth\SocialController@handleProviderCallback');
+Route::get('/logout', 'Auth\AuthController@logout');
 
-Route::auth();
-//Rotas de autenticação de redes socias
-Route::get('login/{provedor}', 'Auth\SocialController@redirectToProvider');
-Route::get('login/callback/{provedor}', 'Auth\SocialController@handleProviderCallback');
+// Rotas de cadastro do usuario
+Route::get('/cadastro', 'Auth\AuthController@showRegistrationForm');
+Route::post('/cadastro', 'Auth\AuthController@register');
 
+// Rotas de redefinição de senha do usuario
+Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'Auth\PasswordController@reset');
+
+//Rotas das páginas
 Route::get('/', 'LeitorController@index');
 Route::get('/perfil','LeitorController@mostraPerfil');
 Route::get('/download/{id}','LeitorController@downloadLivroDigital');

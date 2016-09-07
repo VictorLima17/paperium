@@ -1,6 +1,6 @@
 @if(!Auth::check())
 <a href="/login">Login</a>
-<a href="/register">Cadastro</a>
+<a href="/cadastro">Cadastro</a>
 @else
     Olá,{{Auth::user()->nome}}
     <a href="/logout">Logout</a>

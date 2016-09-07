@@ -27,7 +27,6 @@ class LivroDigitalController extends Controller
 
         $livro->nome = $request->input(['nome']);
         $livro->ano_publicacao = $request->input(['publicacao']);
-        $livro->link_download = md5($request->input(['nome']));
         $livro->genero_id = $request->input(['genero']);
 
         if($request->hasFile('capa') && $request->hasFile('arquivo')){

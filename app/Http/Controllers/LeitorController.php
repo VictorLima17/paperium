@@ -28,4 +28,5 @@ class LeitorController extends Controller
         $tipoArquivo =  Storage::disk('pdfLivro')->mimeType($livro->arquivo);
         return response()->download($localArquivo, $livro->arquivo, ['Content-Type' => $tipoArquivo]);
     }
+
 }

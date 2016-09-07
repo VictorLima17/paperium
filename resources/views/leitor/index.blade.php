@@ -5,6 +5,7 @@
 @endsection
 
 @section('conteudo')
+
     <table border="1px">
         <thead>
             <th>Nome do livro</th>

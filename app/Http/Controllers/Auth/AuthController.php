@@ -24,8 +24,8 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $redirectTo = '/';
-    protected $loginView = 'leitor.auth.login';
-    protected $registerView= 'leitor.auth.register';
+    protected $loginView = 'leitor.auth.auth';
+    protected $registerView= 'leitor.auth.auth';
 
     public function __construct()
     {
@@ -37,7 +37,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'nome' => 'required|max:255|alpha_spaces',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|alpha_num|confirmed',
+            'senha' => 'required|min:6|alpha_num|confirmed',
         ]);
     }
 
@@ -46,7 +46,14 @@ class AuthController extends Controller
         return User::create([
             'nome' => $data['nome'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['senha']),
         ]);
     }
+
+    public function authenticated()
+    {
+        \Session::flash('sucesso','Login realizado com sucesso');
+        return redirect($this->redirectTo);
+    }
+
 }

@@ -17,7 +17,6 @@ class CreateLivrosDigitaisTable extends Migration
             $table->string('nome',100)->unique();
             $table->smallInteger('ano_publicacao'); //não precisa maior que small ja que é só o ano
             $table->string('arquivo');
-            $table->string('link_download')->unique();
             $table->string('capa');
             $table->integer('genero_id')->unsigned()->nullable();
             $table->timestamps();
