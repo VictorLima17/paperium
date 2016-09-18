@@ -60,7 +60,7 @@ return [
 
         'pdfLivro' => [
             'driver' => 'local',
-            'root' => public_path('pdf/'),
+            'root' => public_path('pdf.js/web/pdf/'),
         ],
 
         'public' => [

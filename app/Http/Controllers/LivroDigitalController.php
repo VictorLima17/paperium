@@ -17,8 +17,8 @@ class LivroDigitalController extends Controller
         $this->validate($request,[
             'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
             'publicacao' => 'required|integer',
-            'capa' => 'required|mimes:jpg,jpeg,png|max:1750',
-            'arquivo' => 'required|mimes:pdf|max:1750',
+            'capa' => 'required|mimes:jpg,jpeg,png|max:2000',
+            'arquivo' => 'required|mimes:pdf|max:2000',
             'genero' => 'required|integer|exists:generos,id',
             'autor' => 'required|array|min:1|max:3|exists:autores,id'
         ]);
@@ -61,8 +61,8 @@ class LivroDigitalController extends Controller
         if ($request->input(['nome']) == $livro->nome ){
             $this->validate($request,[
                 'publicacao' => 'required|integer',
-                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:1750',
-                'arquivo' => 'sometimes|mimes:pdf|max:1750',
+                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
+                'arquivo' => 'sometimes|mimes:pdf|max:2000',
                 'genero' => 'required|integer|exists:generos,id',
                 'autor' => 'required|array|min:1|max:2|exists:autores,id'
             ]);
@@ -70,8 +70,8 @@ class LivroDigitalController extends Controller
             $this->validate($request,[
                 'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
                 'publicacao' => 'required|integer',
-                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:1750',
-                'arquivo' => 'sometimes|mimes:pdf|max:1750',
+                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
+                'arquivo' => 'sometimes|mimes:pdf|max:2000',
                 'genero' => 'required|integer|exists:generos,id',
                 'autor' => 'required|array|min:1|max:3|exists:autores,id'
             ]);
@@ -147,8 +147,12 @@ class LivroDigitalController extends Controller
            ]);
 
            $leitor = Auth::user();
-           if($leitor->livrosDigitais()->sync($request->all(),false)){
-                return ['status' => 'sucesso','mensagem' => 'Livro adicionado a lista com sucesso'];
+           if(!$leitor->livrosDigitais->contains($request->livroId)){
+               if($leitor->livrosDigitais()->sync($request->all(),false)){
+                   return ['status' => 'sucesso','mensagem' => 'Livro adicionado a lista com sucesso'];
+               }
+           }else{
+               return ['status' => 'erro','mensagem' => 'O livro já está na sua lista de leitura'];
            }
         }
     }
@@ -161,9 +165,25 @@ class LivroDigitalController extends Controller
            ]);
 
            $leitor = Auth::user();
-           if($leitor->livrosDigitais()->detach($request->all())){
-                return ['status' => 'sucesso','mensagem' => 'Livro retirado da sua lista com sucesso'];
+           if($leitor->livrosDigitais->contains($request->livroId)){
+               if($leitor->livrosDigitais()->detach($request->all())){
+                   return ['status' => 'sucesso','mensagem' => 'Livro retirado da sua lista com sucesso'];
+               }
+           }else{
+               return ['status' => 'erro','mensagem' => 'O livro não pode ser retirado pois não está na sua lista de leitura'];
            }
+
+        }
+    }
+
+    public function atualizarPaginaLeitura($arquivo,$pagina)
+    {
+        if(Auth::check()){
+          $leitor = Auth::user();
+          $livro = LivroDigital::where('arquivo',$arquivo)->first();
+          if($leitor->livrosDigitais->contains($livro->id)){
+              $leitor->livrosDigitais()->updateExistingPivot($livro->id,['pag_atual'=>$pagina]);
+          }            
         }
     }
 

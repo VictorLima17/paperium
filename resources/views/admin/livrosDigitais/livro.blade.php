@@ -23,7 +23,7 @@
     @endif
 
     <b>Nome:</b>{{$livro->nome}}<br>
-    <b>Gênero:</b>{{$livro->genero->genero}}<br>
+    <b>Gênero:</b>{{$livro->genero}}<br>
     <b>Autor(es):</b>
     @forelse($livro->autores as $autor)
         {{$autor->autor}}<br>

@@ -20,7 +20,7 @@ class LivroDigital extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User','lista_leitura','livro_id','user_id');
+        return $this->belongsToMany('App\User','lista_leitura','livro_id','user_id')->withPivot('pag_atual');
     }
     
 }

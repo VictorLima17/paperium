@@ -9,4 +9,5 @@ Homestead.json
 /public/img/genero
 /public/img/livro
 /public/img/leitor
-/public/pdf
+/public/pdf.js/web/pdf
+_ide_helper.php

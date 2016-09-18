@@ -89,9 +89,6 @@ Main Page Content
 .cd-main-content .content-wrapper {
   padding: 45px 5% 3em;
 }
-#genero{
-    padding: 45px 1% 1em;  
-}
 .cd-main-content .content-wrapper h1 {
   text-align: center;
   padding: 3em 0;
@@ -300,7 +297,7 @@ Header
     display: inline-block;
     width: 250px;
     height: 100%;
-    margin: 0 0 0 2.5em;
+   margin: 0 0 0 4.67em;
   }
   .cd-search.is-hidden {
     /* reset style */
@@ -565,7 +562,7 @@ Sidebar
 }
 @media only screen and (min-width: 768px) {
   .cd-side-nav {
-    position: relative;
+    position: none;
     float: left;
     top: auto;
     width: 110px;
@@ -641,6 +638,8 @@ Sidebar
     padding: 0.6em 0;
   }
   .cd-side-nav > ul > li:not(.action-btn):hover > a {
+    background-color: #33383e;
+    box-shadow: inset 3px 0 0 #c83934;
     background-color: #33383e;
   }
   .cd-side-nav > ul > li > a {
@@ -798,17 +797,47 @@ Sidebar
     visibility: visible;
   }
 }
-#add{
-    background-color: #2c3136; border-color: #2c3136;
-    
+
+.btn-down{
+    background-color: #2c3136;
+    border-color: #2c3136;
 }
-#ler{
+
+.btn-ler{
   background-color: #c83934;
   border-color: #c83934;
 }
 
-
-#tabs_ul.nav-pills>li.active>a{
-    background-color: #2c3136;
+.cd-side-nav{
+  position: fixed;
 }
 
+#genero{
+    text-align: center;
+}
+
+.card{
+    position: relative;
+    display: block;
+    margin-bottom: .75rem;
+    background-color: #fff;
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.card-img-top {
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+}
+.card-block {
+    padding: 1rem;
+}
+.card-link:hover {
+    text-decoration: none;
+}
+.card p {
+    margin: 0;
+}
+ img.card-img-top{
+    height: 230px;
+    width: 180px;
+}

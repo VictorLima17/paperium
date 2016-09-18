@@ -24,19 +24,20 @@ Route::get('/download/{id}','LeitorController@downloadLivroDigital');
 //Rotas de ajax da lista de livros digitais do usuario
 Route::post('/adicionar/leitura','LivroDigitalController@adicionarLivroLeitura');
 Route::post('/remover/leitura','LivroDigitalController@removerLivroLeitura');
+Route::get('/leitura/{arquivo}/salvar/{pagina}','LivroDigitalController@atualizarPaginaLeitura');
 
 /* rotas admin */
 //Rotas de autenticação
-$this->get('admin/login', 'AdminAuth\AuthController@showLoginForm');
-$this->post('admin/login', 'AdminAuth\AuthController@login');
-$this->get('admin/logout', 'AdminAuth\AuthController@logout');
+Route::get('admin/login', 'AdminAuth\AuthController@showLoginForm');
+Route::post('admin/login', 'AdminAuth\AuthController@login');
+Route::get('admin/logout', 'AdminAuth\AuthController@logout');
 // Cadastro()
-$this->get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
-$this->post('admin/register', 'AdminAuth\AuthController@register');
+Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
+Route::post('admin/register', 'AdminAuth\AuthController@register');
 //Redefinição de senha
-$this->get('admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
-$this->post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
-$this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
+Route::get('admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
+Route::post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
+Route::post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);

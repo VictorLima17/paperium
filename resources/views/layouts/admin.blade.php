@@ -3,6 +3,7 @@
 <head>
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <meta charset="utf-8"/>
 
     <title> @yield('titulo') </title>
 
