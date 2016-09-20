@@ -9,7 +9,7 @@
     <title> @yield('titulo') </title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-	<link href="{{url('css/custom/style.css')}}" rel="stylesheet" />
+	<link href="{{url('css/custom/menu.css')}}" rel="stylesheet" />
 	<link href="{{url('css/custom/reset.css')}}" rel="stylesheet" />
 	<link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{url('css/font-awesome.css')}}" rel="stylesheet" />

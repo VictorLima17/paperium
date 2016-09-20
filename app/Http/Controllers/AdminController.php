@@ -26,12 +26,18 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function livrosIndex()
+    public function livrosIndex($rota)
     {
-        $autores = Autor::all(); // substitui isso por all qnd tiver muitos query()->paginate(25);
-        $generos = Genero::all();
-        $livros = LivroDigital::all();
-        return view('admin.livros-digitais')->with(['autores' => $autores ,'generos' => $generos ,'livros' => $livros]);
+        if(in_array($rota,['autor','genero','livro'])){
+            $autores = Autor::all();
+            $generos = Genero::all();
+            $livros = LivroDigital::all();
+            return view('admin.livros-digitais')->with(['autores' => $autores ,'generos' => $generos ,'livros' => $livros]);
+        }else{
+            return 404;
+        }
+
+
     }
 
     public function mostraAutor($id)

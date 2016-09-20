@@ -19,3 +19,23 @@
 		});
 	</script>
 @endif
+
+@if(Session::has('erro'))
+	<script type="text/javascript">
+		$.notify({
+			message: '{{Session::get('erro')}}'
+		},{
+			type: 'danger'
+		});
+	</script>
+@endif
+
+@if(Session::has('atencao'))
+	<script type="text/javascript">
+		$.notify({
+			message: '{{Session::get('atencao')}}'
+		},{
+			type: 'warning'
+		});
+	</script>
+@endif

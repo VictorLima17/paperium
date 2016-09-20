@@ -4,15 +4,15 @@
 
 @section('conteudo')
 
-    <b>Nome do Admin:</b>{{Auth::guard('admin')->user()->nome}}<br>
-    <b>Email do Admin:</b>{{Auth::guard('admin')->user()->email}}
+    <div class="content-wrapper">
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <h4>Olá, {{Auth::guard('admin')->user()->nome}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @if(Route::is('admin::index'))
-        Admin is
-    @elseif(Route::is('admin::teste'))
-        Teste is
-    @endif
-
-    {{URL::current()}}
 @endsection
 

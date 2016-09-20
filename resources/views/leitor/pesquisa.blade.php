@@ -1,31 +1,24 @@
 @extends('layouts.leitor')
 
 @section('titulo')
-   Paperium | Home
-@endsection
-
-@section('css')
-	<link href="{{url('css/custom/style.css')}}" rel="stylesheet" />
+	{{$pesquisa}} | Paperium
 @endsection
 
 @section('conteudo')
-
-	<div class="content-wrapper" id="genero">
+	<br>
+	<div class="content-wrapper" id="conteudo">
 		<div class="container-fluid">
-			<div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
-			<div class="scroller scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
 			<div class="wrapper">
-				<ul id = "myTab" class = "nav nav-tabs list">
-					<li class="active"><a href = "#todos"  data-toggle="tab">Todos</a></li>
-					@foreach($generos as $genero)
-						<li><a href = "#{{$genero->genero}}" data-toggle="tab">{{$genero->genero}}</a></li>
-					@endforeach
+				<ul class="nav nav-pills nav-justified">
+					<li class="active"><a data-toggle="pill" href="#livrodigital">Livros Digitais</a></li>
+					<li><a data-toggle="pill" href="#autor">Autores</a></li>
 				</ul>
-			</div>
-			<div id = "myTabContent" class = "tab-content">
-				<div class = "tab-pane fade in active" id = "todos">
-					<div class="row">
-						@foreach($livros as $livro)
+
+				<div class="tab-content">
+					<div id="livrodigital" class="tab-pane fade in active">
+						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Livros Digitais</h4>
+						<div class="row">
+						@forelse($livros as $livro)
 							<div class="col-sm-12 col-md-3 col-lg-3">
 								<div class="card panel panel-default">
 									<h4 class="card-title">{{$livro->nome}}</h4>
@@ -57,23 +50,22 @@
 									</div>
 								</div>
 							</div>
-						@endforeach
+						@empty
+							<h5>Não foram encotrados resultados para essa pesquisa</h5>
+						@endforelse
 						{{$livros->links()}}
+						</div>
+					</div>
+					<div id="autor" class="tab-pane fade">
+						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Autores</h4>
+						@forelse($autores as $autor)
+							<a>{{$autor->autor}}</a><br>
+						@empty
+							<h5>Não foram encotrados resultados para essa pesquisa</h5>
+						@endforelse
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 @endsection
-
-@section('js')
-    <script src="{{url('js/custom/livros-digitais.js')}}"></script>
-    <script src="{{url('js/custom/tabs.js')}}"></script>
-@endsection
-
-
-
-
-
-

@@ -115,7 +115,7 @@ return [
 
         'admins' => [
             'provider' => 'admins',
-            'email' => 'adminAuth.emails.password',
+            'email' => 'admin.auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
         ],

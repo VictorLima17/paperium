@@ -18,8 +18,14 @@ Route::post('/password/reset', 'Auth\PasswordController@reset');
 
 //Rotas das páginas
 Route::get('/', 'LeitorController@index');
+Route::get('/v','LeitorController@indexV');
+Route::get('/genero/{genero}','LeitorController@generoLivros');
 Route::get('/perfil','LeitorController@mostraPerfil');
 Route::get('/download/{id}','LeitorController@downloadLivroDigital');
+Route::get('/pesquisa/redireciona','LeitorController@redirecionaPesquisa');
+Route::get('/pesquisa/{pesquisa}','LeitorController@pesquisaGeral');
+Route::get('/genero/{genero}/pesquisa','LeitorController@pesquisaGeneroRedireciona');
+Route::get('/genero/{urlGenero}/pesquisa/{pesquisa}','LeitorController@pesquisaGeneroLivros');
 
 //Rotas de ajax da lista de livros digitais do usuario
 Route::post('/adicionar/leitura','LivroDigitalController@adicionarLivroLeitura');
@@ -28,22 +34,24 @@ Route::get('/leitura/{arquivo}/salvar/{pagina}','LivroDigitalController@atualiza
 
 /* rotas admin */
 //Rotas de autenticação
-Route::get('admin/login', 'AdminAuth\AuthController@showLoginForm');
-Route::post('admin/login', 'AdminAuth\AuthController@login');
-Route::get('admin/logout', 'AdminAuth\AuthController@logout');
+Route::get('/admin/login', 'AdminAuth\AuthController@showLoginForm');
+Route::post('/admin/login', 'AdminAuth\AuthController@login');
+Route::get('/admin/logout', 'AdminAuth\AuthController@logout');
 // Cadastro()
-Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
-Route::post('admin/register', 'AdminAuth\AuthController@register');
+Route::get('/admin/register', 'AdminAuth\AuthController@showRegistrationForm');
+Route::post('/admin/register', 'AdminAuth\AuthController@register');
 //Redefinição de senha
-Route::get('admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
-Route::post('admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
-Route::post('admin/password/reset', 'AdminAuth\PasswordController@reset');
+Route::get('/admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
+Route::post('/admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
+Route::post('/admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
     Route::get('/teste',[ 'as' => 'teste', 'uses' => 'AdminController@teste']);
-    Route::get('/livros',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
-    
+    Route::get('/livros/digitais/{rota?}',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+//    Route::get('/livros/digitais/genero',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+//    Route::get('/livros/digitais/livro',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+
     //Autor
     Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);
     Route::get('/autor/{id}',[ 'as' => 'mostra.autor', 'uses' => 'AdminController@mostraAutor']);

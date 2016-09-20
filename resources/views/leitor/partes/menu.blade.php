@@ -2,8 +2,8 @@
     <a href="/" class="cd-logo">
         <img src="{{url('img/paperium.png')}}" width="92px" height="50px" alt="Logo"></a>
     <div class="cd-search is-hidden">
-        <form action="#0">
-            <input type="search" placeholder="Pesquisar...">
+        <form method="get" action="/pesquisa/redireciona" role="search">
+	        <input type="search" name="pesquisa" placeholder="Pesquisar...">
         </form>
     </div>
     <a href="#0" class="cd-nav-trigger"><span></span></a>

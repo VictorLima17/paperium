@@ -1,7 +1,7 @@
 <form id="login-form" action="/login" method="post" role="form" style="display: block;">
     {{csrf_field()}}
     <div class="form-group">
-        <input type="email" name="email"  tabindex="1" class="form-control" placeholder="E-mail" value="">
+        <input type="email" name="email"  tabindex="1" class="form-control" placeholder="E-mail" value="{{old('email')}}">
     </div>
     <div class="form-group">
         <input type="password" name="password" tabindex="2" class="form-control" placeholder="Senha">

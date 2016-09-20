@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('alpha_num_spaces', function ($attribute, $value)
         {
-            return preg_match('/(^[A-Za-z0-9 ]+$)+/', $value);
+            return preg_match('/^[\pL\s0-9]+$/u', $value);
         }); //crio a verficação de somente letras,numeros e espaços
  
         Carbon::setLocale('pt_BR'); //localização da diferença de datas da biblioteca carbon
