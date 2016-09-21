@@ -158,6 +158,6 @@
 	<script src="{{url('js/URI.js')}}" type="text/javascript"></script>
     <script src="{{url('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
     <script src="{{url('js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/custom/admin-livrosDigitais.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/custom/admin-leitor.js')}}" type="text/javascript"></script>
 @endsection
 

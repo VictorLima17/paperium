@@ -399,7 +399,7 @@ Top Navigation
 }
 @media only screen and (min-width: 1170px) {
   .cd-top-nav li:not(.has-children) a:hover {
-    color: #1784c7;
+    color: #ac2925;
   }
 }
 
@@ -798,4 +798,6 @@ Sidebar
   }
 }
 
-
+.cd-side-nav a:hover{
+    color: #ac2925;
+}

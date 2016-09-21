@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'imgLeitor' => [
+            'driver' => 'local',
+            'root' => public_path('img/leitor/'),
+        ],
+
         'imgGenero' => [
             'driver' => 'local',
             'root' => public_path('img/genero/'),

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="form-group text-center">
-        <input type="checkbox" tabindex="3" class="" name="lembrar_me" id="remember">
+        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
         <label for="remember"> Lembra-Me</label>
     </div>
     <div class="form-group">

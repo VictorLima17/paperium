@@ -1,3 +1,0 @@
-<br>
-Rodapé da página
-

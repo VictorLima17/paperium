@@ -18,13 +18,13 @@
 			<div class="col-md-6 col-md-offset-3" >
 				<div class="panel panel-login" id="login">
 					<div class="panel-heading">
-						<a href="/"> <img class="img-responsive" style="max-height: 600px;" src="img/paperium.png" /></a>
+						<a href="/"> <img class="img-responsive" style="max-height: 600px;" src="{{url('img/paperium.png')}}" /></a>
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Entrar</a>
+								<a href="#" class="{{Request::is('login') ? 'active' : ''}}" id="login-form-link">Entrar</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Cadastrar</a>
+								<a href="#" class="{{Request::is('cadastro') ? 'active' : ''}}" id="register-form-link">Cadastrar</a>
 							</div>
 						</div>
 						<hr>

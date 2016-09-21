@@ -15,12 +15,10 @@ $(function() {
 		e.preventDefault();
 	});
 
-	var url = new URI(window.location);
-	if(url.segment(0) == 'cadastro'){ //verifico ql pagina acesso para entao acessar o form certo
-        $("#register-form").fadeIn(10);
-        $("#login-form").fadeOut(10);
-        $('#login-form-link').removeClass('active');
-        $("#register-form-link").addClass('active');
+    var url = new URI(window.location);
+    if(url.segment(0) == 'cadastro'){ //verifico ql pagina acesso para entao acessar o form certo
+        $("#register-form").show();
+        $("#login-form").hide();
     }
 
 });

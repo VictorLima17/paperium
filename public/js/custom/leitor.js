@@ -83,5 +83,20 @@ $(document).ready(function () {
                 }
         });
     });
-        
+
+    $('#foto-leitor').fileinput({
+        language:'pt-BR',
+        showUpload:false,
+        allowedFileExtensions: ["jpeg", "jpg", "png"],
+        previewFileType:'image',
+        previewSettings: {image: { width: "200px", height: "200px" }},
+        browseClass: "btn btn-success",
+        browseLabel: "Selecionar",
+        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+        removeClass: "btn btn-danger",
+        removeLabel: "Remover",
+        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> "
+    }).on('fileloaded',function(event){ //gambiarra ja q n tem achei como tirar na mão
+        $('.file-actions').remove();
+    });
 });

@@ -10,6 +10,8 @@ use App\LivroDigital;
 use Storage;
 use Illuminate\Support\Facades\Input;
 use Session;
+use Auth;
+use Image;
 
 class LeitorController extends Controller
 {
@@ -21,22 +23,16 @@ class LeitorController extends Controller
         return view('leitor.index')->with(['livros' => $livros,'generos' => $generos]);
     }
 
-    public function indexV()
-    {
-        $livros = LivroDigital::query()->orderBy('nome')->paginate(8);
-        $generos = Genero::query()->orderBy('genero')->paginate(8);
-        return view('leitor.indexV')->with(['livros' => $livros,'generos' => $generos]);
-    }
-
     public function mostraPerfil()
     {
-        return view('leitor.perfil');
+        $livros = Auth::user()->livrosDigitais()->orderBy('nome')->paginate(8);
+        return view('leitor.perfil')->with(['livros' => $livros]);
     }
 
     public function downloadLivroDigital($id)
     {
         $livro = LivroDigital::query()->findOrFail($id);
-        $localArquivo = public_path('pdf/').$livro->arquivo;
+        $localArquivo = public_path('pdf.js/web/pdf/').$livro->arquivo;
         $tipoArquivo =  Storage::disk('pdfLivro')->mimeType($livro->arquivo);
         return response()->download($localArquivo, $livro->arquivo, ['Content-Type' => $tipoArquivo]);
     }
@@ -87,6 +83,49 @@ class LeitorController extends Controller
         $genero = Genero::query()->where('genero',$urlGenero)->first();
         $livros = $genero->livrosDigitais()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8);
         return view('leitor.livros-genero')->with(['pesquisa' => $pesquisa,'genero' => $genero,'livros' => $livros]);
+    }
+
+    public function mudarSenha(Request $request)
+    {
+        $this->validate($request,[
+            'senha' => 'required|min:6|alpha_num|confirmed'
+        ]);
+
+        $leitor = Auth::user();
+        $leitor->password = bcrypt($request->input(['senha']));
+        if($leitor->save()){
+            Session::flash('sucesso','Sua senha foi alterada com sucesso');
+        }
+        return redirect()->back();
+    }
+
+    public function mudarFoto(Request $request)
+    {
+       $this->validate($request,[
+           'foto' => 'required|mimes:jpg,jpeg,png|max:2000'
+       ]);
+
+       $leitor = Auth::user();
+
+       if($request->hasFile('foto')){
+           $img = $request->file('foto');  //atribuo a img a uma var
+           $imgNome = $leitor->id.''.md5($img.microtime()).'.'.$img->getClientOriginalExtension(); //faço um nome randomico + extensao
+           $localCapa = public_path('img/leitor/' . $imgNome);   //local junto com a imagem
+           Image::make($img)->resize(300,300)->save($localCapa); //salvo a imagem,ja redimensionada
+
+           $imgAntiga = $leitor->foto; //pego o nome da img antiga
+           if($imgAntiga !== 'leitor.jpg'){ //só quero deletar a imagem caso n for a padrão
+               if(Storage::disk('imgLeitor')->exists($imgAntiga)){
+                   Storage::disk('imgLeitor')->delete($imgAntiga); //deleto a img antiga caso exista
+               }
+           }
+
+           $leitor->foto = $imgNome;//atribuo ao campo o novo nome
+           if($leitor->save()){
+               Session::flash('sucesso','Sua foto foi atualizada com sucesso');
+           }
+           return redirect()->back();
+       }
     }
 
 }

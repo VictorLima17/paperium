@@ -15,13 +15,16 @@ Route::post('/cadastro', 'Auth\AuthController@register');
 Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('/password/reset', 'Auth\PasswordController@reset');
+Route::post('/mudar/senha','LeitorController@mudarSenha');
 
 //Rotas das páginas
 Route::get('/', 'LeitorController@index');
-Route::get('/v','LeitorController@indexV');
 Route::get('/genero/{genero}','LeitorController@generoLivros');
-Route::get('/perfil','LeitorController@mostraPerfil');
+Route::get('/perfil',['middleware' => 'auth','uses' => 'LeitorController@mostraPerfil']);
+Route::post('/mudar/foto','LeitorController@mudarFoto');
 Route::get('/download/{id}','LeitorController@downloadLivroDigital');
+
+//Rotas de pesquisa
 Route::get('/pesquisa/redireciona','LeitorController@redirecionaPesquisa');
 Route::get('/pesquisa/{pesquisa}','LeitorController@pesquisaGeral');
 Route::get('/genero/{genero}/pesquisa','LeitorController@pesquisaGeneroRedireciona');
@@ -49,8 +52,6 @@ Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
     Route::get('/teste',[ 'as' => 'teste', 'uses' => 'AdminController@teste']);
     Route::get('/livros/digitais/{rota?}',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
-//    Route::get('/livros/digitais/genero',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
-//    Route::get('/livros/digitais/livro',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
 
     //Autor
     Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);

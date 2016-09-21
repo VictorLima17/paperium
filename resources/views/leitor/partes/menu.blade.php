@@ -45,8 +45,11 @@
             <li class="about"><a href="#0">Sobre</a></li>
 	        @if(Auth::check())
 	            <li class="cd-label">Pessoal</li>
-	            <li class="read"><a href="#0">Minha Leitura</a></li>
-	            <li class="password"><a href="#0">Mudar Senha</a></li>
+	            <li class="read"><a href="/perfil">Minha Leitura</a></li>
+	            @if(!Auth::user()->social)
+	            <li class="password"><a href="#" data-toggle="modal" data-target="#mudar_senha">Mudar Senha</a></li>
+	            <li class="picture"><a href="#" data-toggle="modal" data-target="#mudar_foto">Mudar Foto</a></li>
+		        @endif
 	            <br>
 	        @else
 		        <li class="cd-label">Conta</li>

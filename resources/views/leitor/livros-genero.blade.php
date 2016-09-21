@@ -58,7 +58,4 @@
 	</div>
 @endsection
 
-@section('js')
-<script src="{{url('js/custom/livros-digitais.js')}}"></script>
-@endsection
 
