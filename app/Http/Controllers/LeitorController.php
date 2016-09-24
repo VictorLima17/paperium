@@ -93,7 +93,7 @@ class LeitorController extends Controller
 
         $leitor = Auth::user();
         $leitor->password = bcrypt($request->input(['senha']));
-        if($leitor->save()){
+        if($leitor->update()){
             Session::flash('sucesso','Sua senha foi alterada com sucesso');
         }
         return redirect()->back();
@@ -121,7 +121,7 @@ class LeitorController extends Controller
            }
 
            $leitor->foto = $imgNome;//atribuo ao campo o novo nome
-           if($leitor->save()){
+           if($leitor->update()){
                Session::flash('sucesso','Sua foto foi atualizada com sucesso');
            }
            return redirect()->back();

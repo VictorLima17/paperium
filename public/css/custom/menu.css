@@ -274,7 +274,7 @@ Header
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: url(../../img/cd-search.svg) no-repeat 0 0;
+  background: url(../../img/svg/cd-search.svg) no-repeat 0 0;
 }
 .cd-search input {
   padding-left: 32px;
@@ -480,14 +480,14 @@ Sidebar
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: url(../../img/cd-nav-icons.svg) no-repeat 0 0;
+  background: url(../../img/svg/cd-nav-icons.svg) no-repeat 0 0;
 }
 .cd-side-nav > ul > li.overview > a::before {
- background: url(../../img/cd-nav-icons.svg) no-repeat 0 0;
+ background: url(../../img/svg/cd-nav-icons.svg) no-repeat 0 0;
   background-position: -64px 0;
 }
 .cd-side-nav > ul > li.notifications > a::before {
-  background: url(../../img/cd-nav-icons.svg) no-repeat 0 0;
+  background: url(../../img/svg/cd-nav-icons.svg) no-repeat 0 0;
   background-position: -64px 0;
 }
 .cd-side-nav > ul > li.about > a::before {
@@ -523,9 +523,12 @@ Sidebar
 .cd-side-nav > ul > li.password > a::before {
   background: url(../../img/svg/lock.svg);
   background-size: 16px;
-   
-
 }
+.cd-side-nav > ul > li.picture > a::before {
+    background: url(../../img/svg/image.svg ) no-repeat 0 0;
+    background-size: 16px;
+}
+
 .cd-side-nav .count {
   /* notification badge */
   position: absolute;
@@ -710,7 +713,7 @@ Sidebar
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url(../../img/cd-arrow.svg);
+  background: url(../../img/svg/cd-arrow.svg);
 }
 .has-children.selected > ul {
   display: block;
@@ -800,4 +803,9 @@ Sidebar
 
 .cd-side-nav a:hover{
     color: #ac2925;
+    text-decoration: none;
+}
+.cd-top-nav a:hover, .cd-top-nav a:active{
+    color: #ac2925;
+    text-decoration: none;
 }

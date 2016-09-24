@@ -25,6 +25,8 @@ class PasswordController extends Controller
     protected $linkRequestView = 'leitor.auth.passwords.email';
     protected $resetView = 'leitor.auth.passwords.reset';
     protected $emailsView = 'leitor.auth.emails.password';
+    protected $subject = 'Redefinição de senha';
+    protected $redirectPath = '/';
     
     /**
      * Create a new password controller instance.
@@ -36,24 +38,24 @@ class PasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function sendResetLinkEmail(Request $request)
+    protected function getSendResetLinkEmailSuccessResponse($response) //funcao email enviado com sucesso
     {
-        $this->validateSendResetLinkEmail($request);
+        \Session::flash('sucesso',trans($response));
+        return redirect()->back();
+    }
 
-        $broker = $this->getBroker();
+    protected function getResetSuccessResponse($response)   //funcao senha redefinida com sucesso
+    {
+        \Session::flash('sucesso',trans($response));
+        return redirect($this->redirectPath());
+    }
 
-        $response = Password::broker($broker)->sendResetLink(
-            $this->getSendResetLinkEmailCredentials($request),
-            $this->resetEmailBuilder()
-        );
-
-        switch ($response) {
-            case Password::RESET_LINK_SENT:
-                \Session::flash('sucesso','O link de redefinição foi enviado ao seu email.');
-                return $this->getSendResetLinkEmailSuccessResponse($response);
-            case Password::INVALID_USER:
-            default:
-                return $this->getSendResetLinkEmailFailureResponse($response);
-        }
+    protected function getResetValidationRules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|alpha_num|confirmed|min:6',
+        ];
     }
 }
