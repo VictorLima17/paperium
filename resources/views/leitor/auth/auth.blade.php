@@ -7,9 +7,9 @@
 	<title>Paperium | Entre ou cadastra-se</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-	<link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-	<link href="{{url('css/font-awesome.css')}}" rel="stylesheet" />
-	<link href="{{url('css/bootstrap-social.css')}}" rel="stylesheet" type="text/css"/>
+	<link href="{{url('css/libraries/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+	<link href="{{url('css/libraries/font-awesome.css')}}" rel="stylesheet" />
+	<link href="{{url('css/libraries/bootstrap-social.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{url('css/custom/login.css')}}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -43,10 +43,10 @@
 		</div>
 		@include('leitor.auth.passwords.email')
 	</div>
-	<script src="{{url('js/jquery.js')}}" type="text/javascript"></script>
-	<script src="{{url('js/URI.js')}}" type="text/javascript"></script>
-	<script src="{{url('js/bootstrap.min.js')}}" type="text/javascript"></script>
-	<script src="{{url('js/bootstrap-notify.min.js')}}" type="text/javascript"></script>
+	<script src="{{url('js/libraries/jquery.js')}}" type="text/javascript"></script>
+	<script src="{{url('js/libraries/URI.js')}}" type="text/javascript"></script>
+	<script src="{{url('js/libraries/bootstrap.min.js')}}" type="text/javascript"></script>
+	<script src="{{url('js/libraries/bootstrap-notify.min.js')}}" type="text/javascript"></script>
 	<script src="{{url('js/custom/login.js')}}" type="text/javascript"></script>
 	@include('leitor.partes.mensagens')
 </body>

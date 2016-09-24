@@ -23,12 +23,16 @@ Route::get('/genero/{genero}','LeitorController@generoLivros');
 Route::get('/perfil',['middleware' => 'auth','uses' => 'LeitorController@mostraPerfil']);
 Route::post('/mudar/foto','LeitorController@mudarFoto');
 Route::get('/download/{id}','LeitorController@downloadLivroDigital');
+Route::get('/teste',function(){
+    $foto = Auth::user()->fotoSocialLogins();
+    dd($foto);
+});
 
 //Rotas de pesquisa
 Route::get('/pesquisa/redireciona','LeitorController@redirecionaPesquisa');
 Route::get('/pesquisa/{pesquisa}','LeitorController@pesquisaGeral');
 Route::get('/genero/{genero}/pesquisa','LeitorController@pesquisaGeneroRedireciona');
-Route::get('/genero/{urlGenero}/pesquisa/{pesquisa}','LeitorController@pesquisaGeneroLivros');
+Route::get('/genero/{urlGenero}/pesquisa/{pesquisa}',['as' => 'pesquisa.genero','uses' => 'LeitorController@pesquisaGeneroLivros']);
 
 //Rotas de ajax da lista de livros digitais do usuario
 Route::post('/adicionar/leitura','LivroDigitalController@adicionarLivroLeitura');

@@ -57,5 +57,20 @@ class AuthController extends Controller
         \Session::flash('sucesso','Login realizado com sucesso');
         return redirect($this->redirectTo);
     }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        \Auth::guard($this->getGuard())->login($this->create($request->all()));
+        \Session::flash('sucesso','Usuário cadastrado e logado com sucesso');
+        return redirect($this->redirectPath());
+    }
       
 }

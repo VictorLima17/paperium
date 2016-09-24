@@ -418,8 +418,8 @@ See https://github.com/adobe-type-tools/cmap-resources
     </div>
   </div>
 </div>
-<script src="../../js/jquery.js"></script>    
-<script src="../../js/URI.js"></script>
+<script src="../../js/libraries/jquery.js"></script>    
+<script src="../../js/libraries/URI.js"></script>
 <script>
   var url = new URI(window.location.href);
   var pdf = url.search(true)['file'].replace('pdf/',''); //pego o nome do arquivo com gambiarra

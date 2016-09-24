@@ -28,7 +28,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane {{Request::is('admin/livros/digitais/autor') ? 'active' : ''}}" id="autores">
+                                <div role="tabpanel" class="tab-pane {{Request::is('admin/livros/digitais/autor') ? 'active' : ''}}" id="autor">
                                     <form method="post" action="{{route('admin::cadastra.autor')}}" class="form-inline" style="margin-top:2%">
                                         <div class="form-group">
                                             {!! csrf_field() !!}
@@ -158,6 +158,6 @@
 	<script src="{{url('js/URI.js')}}" type="text/javascript"></script>
     <script src="{{url('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
     <script src="{{url('js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/custom/admin-leitor.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/custom/admin-livrosDigitais.js')}}" type="text/javascript"></script>
 @endsection
 

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class Authenticate
 {
@@ -23,9 +24,11 @@ class Authenticate
             } else {
 
                 if( $guard === 'admin' ){
-                    return redirect()->guest('admin/login');
+                    Session::flash('atencao','Você deve estar logado para entrar nessa página.');
+                    return redirect()->guest('/admin/login');
                 }else{
-                    return redirect()->guest('login');
+                    Session::flash('atencao','Você deve estar logado para entrar nessa página.');
+                    return redirect()->guest('/login');
                 }
 
             }

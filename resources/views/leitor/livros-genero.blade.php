@@ -4,11 +4,15 @@
 	{{$genero->genero}} | Livros
 @endsection
 
+@section('css')
+	<link href="{{url('css/custom/style.css')}}" rel="stylesheet" />
+@endsection
+
 @section('conteudo')
 	<br>
 	<div class="content-wrapper" id="conteudo">
 		<div class="container-fluid">
-			<div class="wrapper">
+			<div class="wrapper text-center">
 				<div class="form-group has-feedback">
 					<form method="get" action="/genero/{{$genero->genero}}/pesquisa">
 						<input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar livros no gênero ..." />
@@ -16,6 +20,9 @@
 					</form>
 				</div>
 				<div class="row">
+					@if(Route::is('pesquisa.genero'))
+						<h4 class="text-center">Livros digitais vindos da pesquisa '{{$pesquisa}}' no gênero {{$genero->genero}}</h4>
+					@endif
 					@forelse($livros as $livro)
 						<div class="col-sm-12 col-md-3 col-lg-3">
 							<div class="card panel panel-default" id="card-{{$livro->nome}}">

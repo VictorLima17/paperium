@@ -4,6 +4,10 @@
 	{{$pesquisa}} | Paperium
 @endsection
 
+@section('css')
+	<link href="{{url('css/custom/style.css')}}" rel="stylesheet" />
+@endsection
+
 @section('conteudo')
 	<br>
 	<div class="content-wrapper" id="conteudo">
@@ -13,8 +17,7 @@
 					<li class="active"><a data-toggle="pill" href="#livrodigital">Livros Digitais</a></li>
 					<li><a data-toggle="pill" href="#autor">Autores</a></li>
 				</ul>
-
-				<div class="tab-content">
+				<div class="tab-content text-center">
 					<div id="livrodigital" class="tab-pane fade in active">
 						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Livros Digitais</h4>
 						<div class="row">

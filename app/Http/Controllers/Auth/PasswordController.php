@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class PasswordController extends Controller
 {
@@ -32,5 +34,26 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $this->validateSendResetLinkEmail($request);
+
+        $broker = $this->getBroker();
+
+        $response = Password::broker($broker)->sendResetLink(
+            $this->getSendResetLinkEmailCredentials($request),
+            $this->resetEmailBuilder()
+        );
+
+        switch ($response) {
+            case Password::RESET_LINK_SENT:
+                \Session::flash('sucesso','O link de redefinição foi enviado ao seu email.');
+                return $this->getSendResetLinkEmailSuccessResponse($response);
+            case Password::INVALID_USER:
+            default:
+                return $this->getSendResetLinkEmailFailureResponse($response);
+        }
     }
 }

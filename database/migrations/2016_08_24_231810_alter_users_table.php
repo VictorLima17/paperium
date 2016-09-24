@@ -15,7 +15,7 @@ class AlterUsersTable extends Migration
        Schema::table('users',function(Blueprint $table){
             $table->string('password')->nullable()->change();
             $table->string('foto')->default('leitor.jpg')->change();
-            $table->boolean('social')->default(false);
+            //$table->boolean('social')->default(false);
        });
     }
 
@@ -26,8 +26,8 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users',function(Blueprint $table){
-            $table->dropColumn('social');
+        Schema::table('users',function($table){
+            //$table->dropColumn('social');
         });
     }
 }

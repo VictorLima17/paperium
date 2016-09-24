@@ -12,8 +12,8 @@
             <li class="has-children account">
                 @if(Auth::check())
 		            <a href="#0">
-			            @if(Auth::user()->social)
-				            <img src="{{Auth::user()->foto}}" width="250px" height="250px">
+			            @if(Auth::user()->verificaSocialLogins())
+				            <img src="{{Auth::user()->fotoSocialLogins()}}" width="250px" height="250px">
 			            @else
 				            <img src="{{url('/img/leitor/',Auth::user()->foto)}}" width="250px" height="250px">
 			            @endif
@@ -46,7 +46,7 @@
 	        @if(Auth::check())
 	            <li class="cd-label">Pessoal</li>
 	            <li class="read"><a href="/perfil">Minha Leitura</a></li>
-	            @if(!Auth::user()->social)
+	            @if(!Auth::user()->verificaSocialLogins())
 	            <li class="password"><a href="#" data-toggle="modal" data-target="#mudar_senha">Mudar Senha</a></li>
 	            <li class="picture"><a href="#" data-toggle="modal" data-target="#mudar_foto">Mudar Foto</a></li>
 		        @endif
