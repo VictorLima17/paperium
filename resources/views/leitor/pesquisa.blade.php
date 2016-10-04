@@ -61,11 +61,17 @@
 					</div>
 					<div id="autor" class="tab-pane fade">
 						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Autores</h4>
-						@forelse($autores as $autor)
-							<a>{{$autor->autor}}</a><br>
+						<div class="row">
+						@forelse($autores->chunk(10) as $autoresChunk)
+							<div class="list-group col-md-4 col-sm-12">
+							@foreach($autoresChunk as $autor)
+									<a href="/autor/{{$autor->autor}}" class="list-group-item">{{$autor->autor}}</a>
+							@endforeach
+							</div>
 						@empty
 							<h5>Não foram encotrados resultados para essa pesquisa</h5>
 						@endforelse
+						</div>
 					</div>
 				</div>
 			</div>

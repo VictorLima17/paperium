@@ -431,6 +431,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       });
     }
   });
+  $('#openFile').hide();
 </script>
   </body>
 </html>

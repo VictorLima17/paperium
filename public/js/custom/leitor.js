@@ -8,9 +8,9 @@ $(document).ready(function () {
             context:$(this),
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url : rota,
-            type : 'POST',
+            type : 'DELETE',
             dataType : 'json',
-            data : { livroId : livroId},
+            data : { livroId : livroId, _method: 'DELETE'},
             success:function (response) {
                 var status = response['status'];
                 if(status == 'sucesso'){

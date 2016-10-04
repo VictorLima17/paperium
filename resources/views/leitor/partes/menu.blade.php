@@ -39,10 +39,10 @@
         <ul>
             <li class="cd-label">Livros</li>
             <li class="filebook"><a href="/">Digital</a></li>
-            <li class="paper"><a href="#0">Físico</a></li>
+            <li class="paper"><a href="/fisico">Físico</a></li>
             <li class="cd-label">Informações</li>
-            <li class="contact"><a href="#0">Contato</a></li>
-            <li class="about"><a href="#0">Sobre</a></li>
+            <li class="contact"><a href="/contato">Contato</a></li>
+            <li class="about"><a href="/sobre">Sobre</a></li>
 	        @if(Auth::check())
 	            <li class="cd-label">Pessoal</li>
 	            <li class="read"><a href="/perfil">Minha Leitura</a></li>

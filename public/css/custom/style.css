@@ -65,3 +65,12 @@ img.card-img-top{
  .pagination>li>a{
      color: #000000;
  }
+
+ .autor-titulo{
+    color: #000000;
+ }
+
+ .autor-titulo:hover,.autor-titulo:active,.autor-titulo:focus{
+    color: #cb2027;
+    text-decoration:none !important;
+ }

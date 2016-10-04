@@ -1,7 +1,7 @@
 @extends('layouts.leitor')
 
 @section('titulo')
-	{{$genero->genero}} | Livros
+	{{$autor->autor}} | Livros
 @endsection
 
 @section('css')
@@ -13,15 +13,16 @@
 	<div class="content-wrapper" id="conteudo">
 		<div class="container-fluid">
 			<div class="wrapper text-center">
+				<a href="/autor/{{$autor->autor}}"><h3 class="text-center autor-titulo">{{$autor->autor}}</h3></a>
 				<div class="form-group has-feedback">
-					<form method="get" action="/genero/{{$genero->genero}}/pesquisa">
-						<input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar livros no gênero ..." />
+					<form method="get" action="/autor/{{$autor->autor}}/pesquisa">
+						<input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar livros nesse Autor ..." />
 						<i class="glyphicon glyphicon-search form-control-feedback"></i>
 					</form>
 				</div>
 				<div class="row">
-					@if(Route::is('pesquisa.genero'))
-						<h4 class="text-center">Livros digitais vindos da pesquisa '{{$pesquisa}}' no gênero {{$genero->genero}}</h4>
+					@if(Route::is('pesquisa.autor'))
+						<h4 class="text-center">Livros digitais vindos da pesquisa '{{$pesquisa}}' no <b>Autor</b> {{$autor->autor}}</h4>
 					@endif
 					@forelse($livros as $livro)
 						<div class="col-sm-12 col-md-3 col-lg-3">
@@ -56,7 +57,7 @@
 							</div>
 						</div>
 					@empty
-						<h5>Não foram encotrados livros nesse gênero</h5>
+						<h5>Não foram encotrados livros para esse Autor</h5>
 					@endforelse
 					{{$livros->links()}}
 				</div>

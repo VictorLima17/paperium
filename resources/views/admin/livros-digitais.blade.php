@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link href="{{url('css/dataTables.bootstrap.min.css')}}" rel="stylesheet"/>
+    {{--<link href="{{url('css/dataTables.bootstrap.min.css')}}" rel="stylesheet"/>--}}
 @endsection
 
 @section('conteudo')
@@ -155,9 +155,9 @@
 @endsection
 
 @section('js')
-	<script src="{{url('js/URI.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/custom/admin-livrosDigitais.js')}}" type="text/javascript"></script>
+	{{--<script src="{{url('js/URI.js')}}" type="text/javascript"></script>--}}
+    {{--<script src="{{url('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>--}}
+    {{--<script src="{{url('js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>--}}
+    {{--<script src="{{url('js/custom/admin-livrosDigitais.js')}}" type="text/javascript"></script>--}}
 @endsection
 

@@ -6,6 +6,7 @@ use App\Autor;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class AutorController extends Controller
 {
@@ -40,7 +41,7 @@ class AutorController extends Controller
 
         if($autor->save()){
             Session::flash('sucesso','Autor atualizado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::mostra.autor',$id);
         }else{
             return redirect()->back()
                    ->withInput();
@@ -54,11 +55,29 @@ class AutorController extends Controller
 
         if($autor->delete()){
             Session::flash('sucesso','Autor deletado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::livros.index',['rota' => 'autor']);
         }else{
             return redirect()->back();
         }
 
+    }
+
+    public function pesquisaAutorRedireciona($autor)
+    {
+        $pesquisa = Input::get('pesquisa');
+        if($pesquisa == ''){
+            Session::flash('atencao','Caso deseja realizar uma pesquisa, preencha o campo de pesquisa.');
+            return redirect()->back();
+        }else{
+            return redirect('/autor/'.$autor.'/pesquisa/'.$pesquisa);
+        }
+    }
+
+    public function pesquisaAutorLivros($urlAutor,$pesquisa)
+    {
+        $autor = Autor::query()->where('autor',$urlAutor)->first();
+        $livros = $autor->livrosDigitais()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8);
+        return view('leitor.livrosAutor')->with(['pesquisa' => $pesquisa,'autor' => $autor,'livros' => $livros]);
     }
 
 }

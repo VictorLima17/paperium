@@ -23,6 +23,11 @@ class LeitorController extends Controller
         return view('leitor.index')->with(['livros' => $livros,'generos' => $generos]);
     }
 
+    public function acervoFisico()
+    {
+        return view('leitor.acervoFisico');
+    }
+
     public function mostraPerfil()
     {
         $livros = Auth::user()->livrosDigitais()->orderBy('nome')->paginate(8);
@@ -35,11 +40,6 @@ class LeitorController extends Controller
         $localArquivo = public_path('pdf.js/web/pdf/').$livro->arquivo;
         $tipoArquivo =  Storage::disk('pdfLivro')->mimeType($livro->arquivo);
         return response()->download($localArquivo, $livro->arquivo, ['Content-Type' => $tipoArquivo]);
-    }
-
-    public function redirecionaPdfViewer()
-    {
-        return view('pdf.js.web.viewer');
     }
 
     public function redirecionaPesquisa()
@@ -64,25 +64,14 @@ class LeitorController extends Controller
     {
         $genero = Genero::query()->where('genero',$genero)->first();
         $livros = $genero->livrosDigitais()->orderBy('nome')->paginate(8);
-        return view('leitor.livros-genero')->with(['genero' => $genero,'livros' => $livros]);
+        return view('leitor.livrosGenero')->with(['genero' => $genero,'livros' => $livros]);
     }
 
-    public function pesquisaGeneroRedireciona($genero)
+    public function autorLivros($autor)
     {
-        $pesquisa = Input::get('pesquisa');
-        if($pesquisa == ''){
-            Session::flash('atencao','Caso deseja realizar uma pesquisa, preencha o campo de pesquisa.');
-            return redirect()->back();
-        }else{
-            return redirect('/genero/'.$genero.'/pesquisa/'.$pesquisa);
-        }
-    }
-
-    public function pesquisaGeneroLivros($urlGenero,$pesquisa)
-    {
-        $genero = Genero::query()->where('genero',$urlGenero)->first();
-        $livros = $genero->livrosDigitais()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8);
-        return view('leitor.livros-genero')->with(['pesquisa' => $pesquisa,'genero' => $genero,'livros' => $livros]);
+        $autor = Autor::query()->where('autor',$autor)->first();
+        $livros = $autor->livrosDigitais()->orderBy('nome')->paginate(8);
+        return view('leitor.livrosAutor')->with(['autor' => $autor,'livros' => $livros]);
     }
 
     public function mudarSenha(Request $request)
@@ -126,6 +115,42 @@ class LeitorController extends Controller
            }
            return redirect()->back();
        }
+    }
+
+    public function contato()
+    {
+        return view('leitor.contato');
+    }
+
+    public function sobre()
+    {
+        return view('leitor.sobre');
+    }
+
+    public function emailContato(Request $request)
+    {
+        $this->validate($request,[
+            'email' => 'required|email',
+            'nome' => 'required|alpha_spaces',
+            'mensagem' => 'required|min:8'
+        ]);
+
+        $dados = [
+            'nome' => $request->input(['nome']),
+            'email' => $request->input(['email']),
+            'mensagem' => $request->input(['mensagem']),
+        ];
+
+        \Mail::send('leitor.partes.emailContato', $dados, function ($message) use($dados){
+            $message->from($dados['email'],$dados['nome']);
+            $message->sender($dados['email']);
+            $message->to('victor-raptor@hotmail.com');
+            $message->subject('Mensagem de contato de '.$dados['nome']);
+            $message->replyTo($dados['email']);
+        });
+
+        Session::flash('sucesso','Email de contato enviado com sucesso');
+        return redirect()->back();
     }
 
 }

@@ -7,10 +7,7 @@
     <title>Paperium | Redefinição de senha</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-    <link href="{{url('css/libraries/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('css/libraries/font-awesome.css')}}" rel="stylesheet" />
-    <link href="{{url('css/libraries/bootstrap-social.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('css/custom/login.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url('css/builds/login.css')}}" rel="stylesheet">
 </head>
 <body>
 
@@ -62,10 +59,8 @@
     </div>
 </div>
 
-<script src="{{url('js/libraries/jquery.js')}}" type="text/javascript"></script>
-<script src="{{url('js/libraries/bootstrap.min.js')}}" type="text/javascript"></script>
-<script src="{{url('js/libraries/bootstrap-notify.min.js')}}" type="text/javascript"></script>
-@include('admin.partes.mensagens')
+	<script src="{{url('js/builds/login.js')}}" type="text/javascript"></script>
+	@include('admin.partes.mensagens')
 
 </body>
 </html>

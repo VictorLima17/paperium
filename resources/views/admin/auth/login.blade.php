@@ -7,10 +7,7 @@
     <title>Administração | Paperium</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('css/font-awesome.css')}}" rel="stylesheet" />
-    <link href="{{url('css/bootstrap-social.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('css/custom/login.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url('css/builds/login.css')}}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -67,9 +64,7 @@
     @include('admin.auth.passwords.email')
 </div>
 
-    <script src="{{url('js/jquery.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('js/bootstrap-notify.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/builds/login.js')}}" type="text/javascript"></script>
     @include('admin.partes.mensagens')
 
 </body>

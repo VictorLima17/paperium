@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Storage;
 use Image;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class GeneroController extends Controller
 {
@@ -34,7 +35,7 @@ class GeneroController extends Controller
 
         if($genero->save()){
             Session::flash('sucesso','Gênero cadastrado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::livros.index',['rota' => 'generos']);
         }else{
             return redirect()->back()
                    ->withInput();
@@ -93,10 +94,28 @@ class GeneroController extends Controller
 
         if($genero->delete()){
             Session::flash('sucesso','Gênero deletado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::livros.index',['rota' => 'genero']);
         }else{
             return redirect()->back();
         }
+    }
+
+    public function pesquisaGeneroRedireciona($genero)
+    {
+        $pesquisa = Input::get('pesquisa');
+        if($pesquisa == ''){
+            Session::flash('atencao','Caso deseja realizar uma pesquisa, preencha o campo de pesquisa.');
+            return redirect()->back();
+        }else{
+            return redirect('/genero/'.$genero.'/pesquisa/'.$pesquisa);
+        }
+    }
+
+    public function pesquisaGeneroLivros($urlGenero,$pesquisa)
+    {
+        $genero = Genero::query()->where('genero',$urlGenero)->first();
+        $livros = $genero->livrosDigitais()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8);
+        return view('leitor.livrosGenero')->with(['pesquisa' => $pesquisa,'genero' => $genero,'livros' => $livros]);
     }
 
 }

@@ -16,27 +16,43 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-xs-6 col-md-6" style="margin-top:10%">
                     @if(Route::is('admin::mostra.deleta.genero'))
                         <p>Tem certeza que deseja deletar o gênero?</p>
                         <form action="{{route('admin::deleta.genero',$genero->id)}}" method="post">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <button type="submit">Deletar</button>
-                            <a href="{{route('admin::livros.index')}}">Cancelar</a>
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                            <a href="{{route('admin::livros.index',['rota' => 'genero'])}}" class="btn btn-success">Cancelar</a>
                         </form>
                     @endif
-
                     <b>Nome do gênero:</b>{{$genero->genero}}<br>
+                    <div class="thumbnail">
+                        <img src="{{url('/img/genero/'.$genero->img)}}">
+                    </div>
                     <b>Criado em:</b>{{$genero->criado_em}}<br>
                     <b>Atualizado pela última vez em:</b>{{$genero->atualizado_em}}<br>
-                    <img src="{{url('/img/genero/'.$genero->img)}}"><br>
-                    <b>Livros cadastrados no gênero:</b><br>
+                    </div>
+                    <div class="col-xs-6 col-md-6" style="margin-top:10%">
+                        <table id="tabela-livros-genero" class='table table-bordered'>
+                            <thead>
+                                <tr>
+                                    <th><b>Livros cadastrados com esse autor</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
                     @forelse($genero->livrosDigitais as $livro)
-                        {{$livro->nome}}<br>
+                        <tr>
+                            <td><a href="{{route('admin::mostra.livro',$livro->id)}}"></a>{{$livro->nome}}<br></td>
+                        </tr>
                     @empty
-                        <p>Sem livros</p>
+                        <tr>
+                            <td>Sem livros</td>
+                        </tr>
                     @endforelse
-                </div>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>

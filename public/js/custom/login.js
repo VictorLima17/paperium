@@ -15,8 +15,8 @@ $(function() {
 		e.preventDefault();
 	});
 
-    var url = new URI(window.location);
-    if(url.segment(0) == 'cadastro'){ //verifico ql pagina acesso para entao acessar o form certo
+    var url = window.location.pathname;
+    if(url == '/cadastro'){ //verifico ql pagina acesso para entao acessar o form certo
         $("#register-form").show();
         $("#login-form").hide();
     }

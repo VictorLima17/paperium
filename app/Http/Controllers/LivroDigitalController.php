@@ -16,7 +16,6 @@ class LivroDigitalController extends Controller
     {
         $this->validate($request,[
             'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
-            'publicacao' => 'required|integer',
             'capa' => 'required|mimes:jpg,jpeg,png|max:2000',
             'arquivo' => 'required|mimes:pdf|max:2000',
             'genero' => 'required|integer|exists:generos,id',
@@ -26,7 +25,6 @@ class LivroDigitalController extends Controller
         $livro = new LivroDigital;
 
         $livro->nome = $request->input(['nome']);
-        $livro->ano_publicacao = $request->input(['publicacao']);
         $livro->genero_id = $request->input(['genero']);
 
         if($request->hasFile('capa') && $request->hasFile('arquivo')){
@@ -46,7 +44,7 @@ class LivroDigitalController extends Controller
         if($livro->save()){
             $livro->autores()->sync($request->input(['autor']), false);
             Session::flash('sucesso','Livro cadastrado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::livros.index',['rota' => 'livro']);
         }else{
             return redirect()->back()
                 ->withInput();
@@ -60,8 +58,7 @@ class LivroDigitalController extends Controller
 
         if ($request->input(['nome']) == $livro->nome ){
             $this->validate($request,[
-                'publicacao' => 'required|integer',
-                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
+               'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
                 'arquivo' => 'sometimes|mimes:pdf|max:2000',
                 'genero' => 'required|integer|exists:generos,id',
                 'autor' => 'required|array|min:1|max:2|exists:autores,id'
@@ -69,7 +66,6 @@ class LivroDigitalController extends Controller
         }else{
             $this->validate($request,[
                 'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
-                'publicacao' => 'required|integer',
                 'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
                 'arquivo' => 'sometimes|mimes:pdf|max:2000',
                 'genero' => 'required|integer|exists:generos,id',
@@ -78,7 +74,6 @@ class LivroDigitalController extends Controller
         }
 
         $livro->nome = $request->input(['nome']);
-        $livro->ano_publicacao = $request->input(['publicacao']);
         $livro->genero_id = $request->input(['genero']);
 
         if($request->hasFile('capa')){
@@ -132,7 +127,7 @@ class LivroDigitalController extends Controller
 
         if($livro->delete()){
             Session::flash('sucesso','Livro deletado com sucesso');
-            return redirect()->route('admin::livros.index');
+            return redirect()->route('admin::livros.index',['rota' => 'livro']);
         }else{
             return redirect()->back();
         }

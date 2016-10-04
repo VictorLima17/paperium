@@ -15,29 +15,34 @@ Route::post('/cadastro', 'Auth\AuthController@register');
 Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('/password/reset', 'Auth\PasswordController@reset');
-Route::post('/mudar/senha','LeitorController@mudarSenha');
 
 //Rotas das páginas
 Route::get('/', 'LeitorController@index');
-Route::get('/genero/{genero}','LeitorController@generoLivros');
+Route::get('/fisico','LeitorController@acervoFisico');
 Route::get('/perfil',['middleware' => 'auth','uses' => 'LeitorController@mostraPerfil']);
-Route::post('/mudar/foto','LeitorController@mudarFoto');
+Route::get('/contato','LeitorController@contato');
+Route::get('/sobre','LeitorController@sobre');
+Route::get('/genero/{genero}','LeitorController@generoLivros');
+Route::get('/autor/{autor}','LeitorController@autorLivros');
 Route::get('/download/{id}','LeitorController@downloadLivroDigital');
-Route::get('/teste',function(){
-    $foto = Auth::user()->fotoSocialLogins();
-    dd($foto);
-});
+Route::post('/contato/email','LeitorController@emailContato');
 
 //Rotas de pesquisa
 Route::get('/pesquisa/redireciona','LeitorController@redirecionaPesquisa');
 Route::get('/pesquisa/{pesquisa}','LeitorController@pesquisaGeral');
-Route::get('/genero/{genero}/pesquisa','LeitorController@pesquisaGeneroRedireciona');
-Route::get('/genero/{urlGenero}/pesquisa/{pesquisa}',['as' => 'pesquisa.genero','uses' => 'LeitorController@pesquisaGeneroLivros']);
+Route::get('/genero/{genero}/pesquisa','GeneroController@pesquisaGeneroRedireciona');
+Route::get('/genero/{urlGenero}/pesquisa/{pesquisa}',['as' => 'pesquisa.genero','uses' => 'GeneroController@pesquisaGeneroLivros']);
+Route::get('/autor/{autor}/pesquisa','AutorController@pesquisaAutorRedireciona');
+Route::get('/autor/{urlAutor}/pesquisa/{pesquisa}',['as' => 'pesquisa.autor','uses' => 'AutorController@pesquisaAutorLivros']);
 
 //Rotas de ajax da lista de livros digitais do usuario
 Route::post('/adicionar/leitura','LivroDigitalController@adicionarLivroLeitura');
-Route::post('/remover/leitura','LivroDigitalController@removerLivroLeitura');
-Route::get('/leitura/{arquivo}/salvar/{pagina}','LivroDigitalController@atualizarPaginaLeitura');
+Route::delete('/remover/leitura','LivroDigitalController@removerLivroLeitura');
+Route::get('/leitura/{arquivo}/salvar/{pagina}','LivroDigitalController@atualizarPaginaLeitura'); //gambiarra,era pra ser post
+
+// Rotas de operações com o perfil do leitor
+Route::post('/mudar/senha','LeitorController@mudarSenha');
+Route::post('/mudar/foto','LeitorController@mudarFoto');
 
 /* rotas admin */
 //Rotas de autenticação
@@ -45,17 +50,18 @@ Route::get('/admin/login', 'AdminAuth\AuthController@showLoginForm');
 Route::post('/admin/login', 'AdminAuth\AuthController@login');
 Route::get('/admin/logout', 'AdminAuth\AuthController@logout');
 // Cadastro()
-Route::get('/admin/register', 'AdminAuth\AuthController@showRegistrationForm');
-Route::post('/admin/register', 'AdminAuth\AuthController@register');
+//Route::get('/admin/register', 'AdminAuth\AuthController@showRegistrationForm');
+//Route::post('/admin/register', 'AdminAuth\AuthController@register');
 //Redefinição de senha
 Route::get('/admin/password/reset/{token?}', 'AdminAuth\PasswordController@showResetForm');
 Route::post('/admin/password/email', 'AdminAuth\PasswordController@sendResetLinkEmail');
 Route::post('/admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
+    //Páginas
     Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
-    Route::get('/teste',[ 'as' => 'teste', 'uses' => 'AdminController@teste']);
-    Route::get('/livros/digitais/{rota?}',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+    Route::post('/mudar/senha',['as' => 'mudar.senha', 'uses' => 'AdminController@mudarSenha']);
+    Route::get('/livros/digitais/{rota}',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
 
     //Autor
     Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);

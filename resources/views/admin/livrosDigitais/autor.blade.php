@@ -10,41 +10,59 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
+	                <div class="col-xs-6 col-md-6" style="margin-top:10%">
                     @if(Route::is('admin::mostra.autor'))
-
                         <b>Nome do Autor:</b>{{$autor->autor}}<br>
-
                     @elseif(Route::is('admin::mostra.edita.autor'))
-                        <form action="{{route('admin::atualiza.autor',$autor->id)}}" method="post">
+						<form action="{{route('admin::atualiza.autor',$autor->id)}}" method="post">
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
-                            <input type="text" name="autor" value="{{$autor->autor}}">
-                            <button type="submit">Atualizar</button>
-                            <a href="{{route('admin::livros.index')}}">Cancelar</a>
+							<div class="form-group">
+                                <input type="text" name="autor" value="{{$autor->autor}}" class="form-control">
+							</div>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-success">Atualizar</button>
+								<a href="{{route('admin::livros.index',['rota' => 'autor'])}}" class="btn btn-primary">Cancelar</a>
+							</div>
                         </form>
                     @elseif(Route::is('admin::mostra.deleta.autor'))
-                        <b>Nome do autor:</b>{{$autor->autor}}<br>
+                        <p>Tem certeza que deseja deletar o autor?</p>
                         <form action="{{route('admin::deleta.autor',$autor->id)}}" method="post">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <button type="submit">Deletar</button>
-                            <a href="{{route('admin::livros.index')}}">Cancelar</a>
+	                        <div class="form-group text-center">
+		                        <button type="submit" class="btn btn-danger">Deletar</button>
+		                        <a href="{{route('admin::livros.index',['rota' => 'autor'])}}" class="btn btn-success">Cancelar</a>
+	                        </div>
                         </form>
+			            <b>Nome do autor:</b>{{$autor->autor}}<br>
                     @endif
-
-                    <b>Criado em:</b>{{$autor->criado_em}}<br>
-                    <b>Atualizado pela última vez em:</b>{{$autor->atualizado_em}}<br>
-                    <b>Livros cadastrados com o autor:</b><br>
+		            <b>Criado em:</b>{{$autor->criado_em}}<br>
+                    <b>Atualizado pela última vez em:</b>{{$autor->atualizado_em}}
+	                </div>
+	                <div class="col-xs-6 col-md-6" style="margin-top:3%">
+		                <table id="tabela-livros-autor" class="table table-bordered">
+			                   <thead>
+			                        <tr>
+			                            <th><b>Livros cadastrados com o autor</b></th>
+			                        </tr>
+			                   </thead>
+			                   <tbody>
                     @forelse($autor->livrosDigitais as $livro)
-                        {{$livro->nome}}<br>
+                        <tr>
+	                       <td><a href="{{route('admin::mostra.livro',$livro->id)}}">{{$livro->nome}}</a></td>
+                        </tr>
                     @empty
-                        <p>Sem livros</p>
+                        <tr><td>Sem livros</td></tr>
                     @endforelse
+			                  </tbody>
+		                </table>
+		            </div>
+		            </div>
                 </div>
-            </div>
+           </div>
         </div>
     </div>
-
 @endsection
 
 

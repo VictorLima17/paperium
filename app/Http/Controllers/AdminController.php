@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\LivroDigital;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
+use Session;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -36,8 +38,6 @@ class AdminController extends Controller
         }else{
             return 404;
         }
-
-
     }
 
     public function mostraAutor($id)
@@ -89,6 +89,20 @@ class AdminController extends Controller
         $generos = Genero::all();
         $autorLivro = $livro->autores()->lists('id'); //pego os autores do livro para inserir no select
         return view('admin.livrosDigitais.editaLivro')->with(['livro' => $livro,'generos' => $generos, 'autores' => $autores, 'autorLivro' => $autorLivro]);
+    }
+
+    public function mudarSenha(Request $request)
+    {
+        $this->validate($request,[
+            'senha' => 'required|min:6|alpha_num|confirmed'
+        ]);
+
+        $admin = Auth::guard('admin')->user();
+        $admin->password = bcrypt($request->input(['senha']));
+        if($admin->update()){
+            Session::flash('sucesso','Sua senha foi alterada com sucesso');
+        }
+        return redirect()->back();
     }
 
 }
