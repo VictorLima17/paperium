@@ -9,9 +9,12 @@
     <title> @yield('titulo') </title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-	<link href="{{url('css/builds/admin.css')}}" rel="stylesheet"/>
+	<link href="{{url('css/custom/menu.css')}}" rel="stylesheet" />
+	<link href="{{url('css/custom/reset.css')}}" rel="stylesheet" />
+	<link href="{{url('css/libraries/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+	<link href="{{url('css/libraries/font-awesome.css')}}" rel="stylesheet" />
 	<script src="{{url('js/libraries/modernizr.js')}}" type="text/javascript"></script>
-    @yield('css') <!-- Aqui vem os css custom especificos de cada pagina-->
+    @yield('css') <!-- Aqui vem os css especificos de cada pagina-->
 
 </head>
 <body>
@@ -20,9 +23,12 @@
 
     @yield('conteudo') <!-- Aqui vem o conteudo da pagina-->
     </main>
-    @include('admin.partes.adminModals')
 
-   	<script src="{{url('js/builds/admin.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/libraries/jquery.js')}}"></script>
+    <script src="{{url('js/libraries/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/libraries/bootstrap-notify.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/libraries/jquery.menu-aim.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/custom/main.js')}}" type="text/javascript"></script>
     @yield('js') <!-- Aqui vem os js especificos de cada pagina -->
 
     @include('admin.partes.mensagens') <!-- Incluo as mensagens de erro para todas paginas-->

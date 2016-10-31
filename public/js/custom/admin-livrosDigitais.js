@@ -11,7 +11,10 @@ $(document).ready(function(){
             { "orderable": false, "targets": [-1,-2] } //colunas q n podem ser ordenadas
         ]
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> Acervo Fisico
     $('#tabela-generos').DataTable({
         "pageLength": 10,
         "info" : false,
@@ -24,7 +27,10 @@ $(document).ready(function(){
             { "orderable": false, "targets": [-1,-2] }
         ]
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> Acervo Fisico
     $('#tabela-livros').DataTable({
         "pageLength": 10,
         "info" : false,
@@ -37,6 +43,7 @@ $(document).ready(function(){
             { "orderable": false, "targets": [-1,-2] }
         ]
     });
+<<<<<<< HEAD
 
     $('#tabela-livros-autor').DataTable({
         "pageLength": 15,
@@ -113,4 +120,6 @@ $(document).ready(function(){
         placeholder : "Autor"
     });
 
+=======
+>>>>>>> Acervo Fisico
 });
