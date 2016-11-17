@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 use Session;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -93,6 +94,17 @@ class AdminController extends Controller
             Session::flash('sucesso','Sua senha foi alterada com sucesso');
         }
         return redirect()->back();
+    }
+    public function livrosFisico() {
+        $file = Storage::get("Livros.json");
+        $json= \GuzzleHttp\json_decode($file);
+        $det_file = Storage::get("admin.json");
+        $det= \GuzzleHttp\json_decode($det_file);
+        return view("admin.livrosFisico.fisico")->with(['livros' => $json, 'detalhes'=>$det]);
+    }
+    public function LivroDownload() {
+        $path = storage_path('app/Paperium.exe');
+        return response()->download($path);
     }
 
 }

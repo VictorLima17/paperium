@@ -22,7 +22,7 @@
 				<li class="filebook"><a href="{{route('admin::livros.index',['rota' => 'genero'])}}">Gêneros</a></li>
 				<li class="paper"><a href="{{route('admin::livros.index',['rota' => 'livro'])}}">Livros</a></li>
 			<li class="cd-label">Acervo Físico</li>
-				<li class="paper"><a href="/">Livros físicos</a></li>
+				<li class="paper"><a href="{{url('/admin/fisico')}}">Livros físicos</a></li>
 			<li class="cd-label">Pessoal</li>
 				<li class="password"><a href="#" data-toggle="modal" data-target="#mudar_senha">Mudar Senha</a></li>
 			<br>

@@ -87,6 +87,16 @@ Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     Route::put('/livro/{id}',[ 'as' => 'atualiza.livro', 'uses' => 'LivroDigitalController@atualizaLivro']);
     Route::get('/livro/deleta/{id}',[ 'as' => 'mostra.deleta.livro', 'uses' => 'AdminController@mostraLivro']);
     Route::delete('/livro/{id}',[ 'as' => 'deleta.livro', 'uses' => 'LivroDigitalController@deletaLivro']);
-    
+
+    //Rotas do Acervo Fisico
+    Route::get('/fisico',[ 'as' => 'fisico', 'uses' => 'AdminController@livrosFisico']);
+    //Dowlaod do programa
+    Route::get('/download',[ 'as' => 'fisico', 'uses' => 'AdminController@LivroDownload']);
 });
 
+Route::post('/upload/json',"LivroFisicoController@Upload");
+Route::get('/fisico',"LivroFisicoController@Pesquisar");
+Route::get('/{hash}',function ($hash){
+
+   return  \Illuminate\Support\Facades\Hash::make($hash);
+});
