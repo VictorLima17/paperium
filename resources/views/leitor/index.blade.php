@@ -9,16 +9,18 @@
 @endsection
 
 @section('conteudo')
+
 	<br>
 	<div class="content-wrapper" id="conteudo">
 		<div class="container-fluid">
 			<div class="wrapper">
+
 				<ul class="nav nav-pills nav-justified">
-					<li class="active"><a data-toggle="pill" href="#livros">Livros Digitais</a></li>
-					<li><a data-toggle="pill" href="#generos">Selecione o gênero</a></li>
+					<li id="tab-livros" class="{{($parametro == 'livros') ? 'active' : ''}}"><a data-toggle="pill" href="#livros">Livros Digitais</a></li>
+					<li id="tab-generos" class="{{($parametro == 'generos') ? 'active' : ''}}"><a data-toggle="pill" href="#generos">Selecione o gênero</a></li>
 				</ul>
 				<div class="tab-content text-center">
-					<div id="livros" class="tab-pane in active">
+					<div id="livros" class="tab-pane in {{($parametro == 'livros') ? 'active' : ''}}">
 						<div class="row">
 							@foreach($livros as $livro)
 								<div class="col-sm-12 col-md-3 col-lg-3">
@@ -56,7 +58,7 @@
 							{{$livros->links()}}
 						</div>
 					</div>
-					<div id="generos" class="tab-pane">
+					<div id="generos" class="tab-pane {{($parametro == 'generos') ? 'active' : ''}}">
 						<div class="row">
 							@foreach($generos as $genero)
 							<div class="col-xs-6 col-md-3">
@@ -65,6 +67,7 @@
 									</div>
 							</div>
 							@endforeach
+							{{$generos->links()}}
 						</div>
 					</div>
 				</div>
@@ -72,3 +75,4 @@
 		</div>
 	</div>
 @endsection
+

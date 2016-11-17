@@ -18,9 +18,15 @@ class LeitorController extends Controller
 
     public function index()
     {
-        $livros = LivroDigital::query()->orderBy('nome')->paginate(8);
-        $generos = Genero::all();
-        return view('leitor.index')->with(['livros' => $livros,'generos' => $generos]);
+        $livros = LivroDigital::query()->orderBy('nome')->paginate(8,['*'],'livros');
+        $generos = Genero::query()->orderBy('genero')->paginate(2,['*'],'generos');
+        $url = \Request::fullUrl();
+        if(strpos($url,'generos')){
+            $parametro = 'generos';
+        }else{
+            $parametro = 'livros';
+        }
+        return view('leitor.index')->with(['livros' => $livros,'generos' => $generos,'parametro' => $parametro]);
     }
 
     public function acervoFisico()
@@ -55,9 +61,15 @@ class LeitorController extends Controller
 
     public function pesquisaGeral($pesquisa)
     {
-        $livros = LivroDigital::query()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8);
-        $autores = Autor::query()->where('autor','like','%'.$pesquisa.'%')->orderBy('autor')->get();
-        return view('leitor.pesquisa')->with(['pesquisa' => $pesquisa,'livros' => $livros,'autores' => $autores]);
+        $livros = LivroDigital::query()->where('nome','like','%'.$pesquisa.'%')->orderBy('nome')->paginate(8,['*'],'livros');
+        $autores = Autor::query()->where('autor','like','%'.$pesquisa.'%')->orderBy('autor')->paginate(30,['*'],'autores');
+        $url = \Request::fullUrl();
+        if(strpos($url,'autores')){
+            $parametro = 'autores';
+        }else{
+            $parametro = 'livros';
+        }
+        return view('leitor.pesquisa')->with(['pesquisa' => $pesquisa,'livros' => $livros,'autores' => $autores,'parametro' => $parametro]);
     }
 
     public function generoLivros($genero)
@@ -119,7 +131,7 @@ class LeitorController extends Controller
 
     public function contato()
     {
-        return view('leitor.contato');
+       return view('leitor.contato');
     }
 
     public function sobre()
@@ -144,7 +156,7 @@ class LeitorController extends Controller
         \Mail::send('leitor.partes.emailContato', $dados, function ($message) use($dados){
             $message->from($dados['email'],$dados['nome']);
             $message->sender($dados['email']);
-            $message->to('victor-raptor@hotmail.com');
+            $message->to('ppaperium@gmail.com');
             $message->subject('Mensagem de contato de '.$dados['nome']);
             $message->replyTo($dados['email']);
         });

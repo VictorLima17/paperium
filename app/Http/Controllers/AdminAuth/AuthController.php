@@ -23,8 +23,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/admin';
-    protected $redirectPath = '/admin';
+    protected $redirectTo = '/admin/livros/digitais/autor';
+    protected $redirectPath = '/admin/livros/digitais/autor';
     protected $guard = 'admin';
     protected $loginView = 'admin.auth.login';
     protected $registerView = 'admin.auth.register';

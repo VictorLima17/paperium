@@ -13,7 +13,7 @@
 					<div class="col-md-6">
 						<br>
 						<iframe	width="100%" height="400px" frameborder="0" style="border:0"
-								src="https://www.google.com/maps/embed/v1/place?key={{env('GOOGLE_MAPS')}}&q=place_id:ChIJr7SRvEv4yJQRhfCoEj0o9EI" allowfullscreen>
+								src="https://www.google.com/maps/embed/v1/place?key={{config('services.google.maps')}}&q=place_id:ChIJr7SRvEv4yJQRhfCoEj0o9EI" allowfullscreen>
 						</iframe>
 						<h3 class="text-center">Localização</h3>
 						<p class="lead">Rua Apoió,5 - Mogi Mirim - SP</a><br>

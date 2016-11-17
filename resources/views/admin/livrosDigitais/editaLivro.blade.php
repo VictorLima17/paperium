@@ -22,14 +22,16 @@
                             <span class="input-group-addon" id="basic-addon1">Nome:</span>
                             <input type="text" name="nome" placeholder="Insira o nome do livro" value="{{$livro->nome}}" class="form-control" aria-describedby="basic-addon1">
                         </div>
-                        <div class="col-lg-3 col-lg-offset-2 col-sm-12">
-                            <div class="form-group" style="margin-top:2%;">
-                                <input name="capa" id="capa-livro" type="file" class="file col-md-4-offset-2" data-preview-file-type="text" >
+                        <div class="row">
+                            <div class="col-lg-3 col-lg-offset-2 col-sm-12">
+                                <div class="form-group" style="margin-top:2%;">
+                                    <input name="capa" id="capa-livro" type="file" class="file col-md-4-offset-2" data-preview-file-type="text" >
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-lg-offset-2 col-sm-12">
-                            <div class="form-group" style="margin-top:2%;">
-                                <input name="arquivo" id="pdf-livro" type="file" class="file col-md-4-offset-2" data-preview-file-type="text" >
+                            <div class="col-lg-3 col-lg-offset-2 col-sm-12">
+                                <div class="form-group" style="margin-top:2%;">
+                                    <input name="arquivo" id="pdf-livro" type="file" class="file col-md-4-offset-2" data-preview-file-type="text" >
+                                </div>
                             </div>
                         </div>
                         <div class='row'>

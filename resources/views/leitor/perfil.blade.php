@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3">
-                        @if(Auth::user()->social)
+                        @if(Auth::user()->verificaSocialLogins())
                             <img src="{{Auth::user()->foto}}" width="100px" height="100px">
                         @else
                             <img src="{{url('/img/leitor/',Auth::user()->foto)}}" width="100px" height="100px">
@@ -43,7 +43,7 @@
                                     <div class="text-center">
                                         <a href="#" class="btn btn-primary lista-remover" id="{{$livro->id}}" role="button">Remover da Lista</a>
                                         <?php $pagina= Auth::user()->livrosDigitais()->findOrFail($livro->id)->pivot->pag_atual ?>
-                                        <a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" class="btn btn-danger" role="button">Ler</a>
+                                        <a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
                                     </div>
                                 </div>
                             </div>

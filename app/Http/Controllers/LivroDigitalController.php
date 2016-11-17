@@ -17,7 +17,7 @@ class LivroDigitalController extends Controller
         $this->validate($request,[
             'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
             'capa' => 'required|mimes:jpg,jpeg,png|max:2000',
-            'arquivo' => 'required|mimes:pdf|max:2000',
+            'arquivo' => 'required|mimes:pdf|max:6500',
             'genero' => 'required|integer|exists:generos,id',
             'autor' => 'required|array|min:1|max:3|exists:autores,id'
         ]);
@@ -59,7 +59,7 @@ class LivroDigitalController extends Controller
         if ($request->input(['nome']) == $livro->nome ){
             $this->validate($request,[
                'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
-                'arquivo' => 'sometimes|mimes:pdf|max:2000',
+                'arquivo' => 'sometimes|mimes:pdf|max:6500',
                 'genero' => 'required|integer|exists:generos,id',
                 'autor' => 'required|array|min:1|max:2|exists:autores,id'
             ]);
@@ -67,7 +67,7 @@ class LivroDigitalController extends Controller
             $this->validate($request,[
                 'nome' => 'required|alpha_num_spaces|max:100|unique:livros_digitais',
                 'capa' => 'sometimes|mimes:jpg,jpeg,png|max:2000',
-                'arquivo' => 'sometimes|mimes:pdf|max:2000',
+                'arquivo' => 'sometimes|mimes:pdf|max:6500',
                 'genero' => 'required|integer|exists:generos,id',
                 'autor' => 'required|array|min:1|max:3|exists:autores,id'
             ]);

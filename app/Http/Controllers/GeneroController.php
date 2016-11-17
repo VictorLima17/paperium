@@ -35,7 +35,7 @@ class GeneroController extends Controller
 
         if($genero->save()){
             Session::flash('sucesso','Gênero cadastrado com sucesso');
-            return redirect()->route('admin::livros.index',['rota' => 'generos']);
+            return redirect()->route('admin::livros.index',['rota' => 'genero']);
         }else{
             return redirect()->back()
                    ->withInput();

@@ -99,4 +99,5 @@ $(document).ready(function () {
     }).on('fileloaded',function(event){ //gambiarra ja q n tem achei como tirar na mão
         $('.file-actions').remove();
     });
+
 });

@@ -43,14 +43,14 @@
 											@if(Auth::user()->livrosDigitais->contains($livro->id))
 												<a href="#" class="btn btn-primary lista-remover" id="{{$livro->id}}" role="button">Remover da Lista</a>
 												<?php $pagina= Auth::user()->livrosDigitais()->findOrFail($livro->id)->pivot->pag_atual ?>
-												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" class="btn btn-danger" role="button">Ler</a>
+												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 											@elseif(!Auth::user()->livrosDigitais->contains($livro->id))
 												<a href="#" class=" btn btn-primary lista-adicionar" id="{{$livro->id}}" role="button">Adicionar a lista</a>
 												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
 											@endif
 										@else
 											<a href="/download/{{$livro->id}}" class="btn-down btn btn-primary " role="button">Download</a>
-											<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
+											<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 										@endif
 									</div>
 								</div>

@@ -14,11 +14,11 @@
 		<div class="container-fluid">
 			<div class="wrapper">
 				<ul class="nav nav-pills nav-justified">
-					<li class="active"><a data-toggle="pill" href="#livrodigital">Livros Digitais</a></li>
-					<li><a data-toggle="pill" href="#autor">Autores</a></li>
+					<li class="{{(($parametro == 'livros') ? 'active' : '')}}"><a data-toggle="pill" href="#livrodigital">Livros Digitais</a></li>
+					<li class="{{(($parametro == 'autores') ? 'active' : '')}}"><a data-toggle="pill" href="#autor">Autores</a></li>
 				</ul>
 				<div class="tab-content text-center">
-					<div id="livrodigital" class="tab-pane fade in active">
+					<div id="livrodigital" class="tab-pane fade in {{(($parametro == 'livros') ? 'active' : '')}}">
 						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Livros Digitais</h4>
 						<div class="row">
 						@forelse($livros as $livro)
@@ -40,14 +40,14 @@
 												@if(Auth::user()->livrosDigitais->contains($livro->id))
 													<a href="#" class="btn btn-primary lista-remover" id="{{$livro->id}}" role="button">Remover da Lista</a>
 													<?php $pagina= Auth::user()->livrosDigitais()->findOrFail($livro->id)->pivot->pag_atual ?>
-													<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" class="btn btn-danger" role="button">Ler</a>
+													<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 												@elseif(!Auth::user()->livrosDigitais->contains($livro->id))
 													<a href="#" class=" btn btn-primary lista-adicionar" id="{{$livro->id}}" role="button">Adicionar a lista</a>
 													<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
 												@endif
 											@else
 												<a href="/download/{{$livro->id}}" class="btn-down btn btn-primary " role="button">Download</a>
-												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
+												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 											@endif
 										</div>
 									</div>
@@ -59,7 +59,7 @@
 						{{$livros->links()}}
 						</div>
 					</div>
-					<div id="autor" class="tab-pane fade">
+					<div id="autor" class="tab-pane fade {{(($parametro == 'autores') ? 'active' : '')}}">
 						<h4 class="text-center">Resultados da pesquisa '{{$pesquisa}}' em Autores</h4>
 						<div class="row">
 						@forelse($autores->chunk(10) as $autoresChunk)
@@ -71,6 +71,7 @@
 						@empty
 							<h5>Não foram encotrados resultados para essa pesquisa</h5>
 						@endforelse
+						{{$autores->links()}}
 						</div>
 					</div>
 				</div>

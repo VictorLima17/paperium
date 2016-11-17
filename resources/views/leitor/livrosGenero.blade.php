@@ -14,22 +14,18 @@
 		<div class="container-fluid">
 			<div class="wrapper text-center">
 				<div class="row">
-					<div class="col-md-3 col-sm-12">
-						{{--<h2 class="text-center">{{$genero->genero}}</h2>--}}
+					<div class="col-md-3 col-md-offset-4 col-sm-12">
 						<div class="thumbnail">
 							<a href="/genero/{{$genero->genero}}"><img src="{{url('img/genero/'.$genero->img)}}"></a>
 						</div>
 					</div>
-					<div class="col-md-9 col-sm-12">
+				</div>
 						<div class="form-group has-feedback">
 							<form method="get" action="/genero/{{$genero->genero}}/pesquisa">
 								<input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar livros nesse gênero ..." />
 								<i class="glyphicon glyphicon-search form-control-feedback"></i>
 							</form>
 						</div>
-					</div>
-				</div>
-
 				<div class="row">
 					@if(Route::is('pesquisa.genero'))
 						<h4 class="text-center">Livros digitais vindos da pesquisa '{{$pesquisa}}' no <b>Gênero</b> {{$genero->genero}}</h4>
@@ -53,14 +49,14 @@
 											@if(Auth::user()->livrosDigitais->contains($livro->id))
 												<a href="#" class="btn btn-primary lista-remover" id="{{$livro->id}}" role="button">Remover da Lista</a>
 												<?php $pagina= Auth::user()->livrosDigitais()->findOrFail($livro->id)->pivot->pag_atual ?>
-												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" class="btn btn-danger" role="button">Ler</a>
+												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}#page={{$pagina}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 											@elseif(!Auth::user()->livrosDigitais->contains($livro->id))
 												<a href="#" class=" btn btn-primary lista-adicionar" id="{{$livro->id}}" role="button">Adicionar a lista</a>
 												<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
 											@endif
 										@else
 											<a href="/download/{{$livro->id}}" class="btn-down btn btn-primary " role="button">Download</a>
-											<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" class="btn btn-danger" role="button">Ler</a>
+											<a href="/pdf.js/web/viewer.php?file=pdf/{{$livro->arquivo}}" target="_blank" class="btn btn-danger" role="button">Ler</a>
 										@endif
 									</div>
 								</div>

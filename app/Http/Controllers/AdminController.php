@@ -18,17 +18,7 @@ class AdminController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index()
-    {
-        return view('admin.index');
-    }
-
-    public function teste()
-    {
-        return view('admin.index');
-    }
-
-    public function livrosIndex($rota)
+    public function index($rota)
     {
         if(in_array($rota,['autor','genero','livro'])){
             $autores = Autor::all();
@@ -36,7 +26,7 @@ class AdminController extends Controller
             $livros = LivroDigital::all();
             return view('admin.livros-digitais')->with(['autores' => $autores ,'generos' => $generos ,'livros' => $livros]);
         }else{
-            return 404;
+            abort(404);
         }
     }
 

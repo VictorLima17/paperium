@@ -59,9 +59,8 @@ Route::post('/admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::group(['prefix' => 'admin','as' => 'admin::'], function(){
     //Páginas
-    Route::get('/',[ 'as' => 'index', 'uses' => 'AdminController@index']);
     Route::post('/mudar/senha',['as' => 'mudar.senha', 'uses' => 'AdminController@mudarSenha']);
-    Route::get('/livros/digitais/{rota}',[ 'as' => 'livros.index', 'uses' => 'AdminController@livrosIndex']);
+    Route::get('/livros/digitais/{rota}',[ 'as' => 'livros.index', 'uses' => 'AdminController@index']);
 
     //Autor
     Route::post('/cadastra/autor',[ 'as' => 'cadastra.autor', 'uses' => 'AutorController@cadastraAutor']);
